@@ -7,8 +7,19 @@ export const SITE_TAGLINE = "Play free games in your browser";
  * only correct in local development.
  */
 export function siteUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-  return raw.replace(/\/+$/, "");
+  let raw = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").trim();
+  if (!raw) {
+    raw = "http://localhost:3000";
+  }
+  if (!/^https?:\/\//i.test(raw)) {
+    raw = `https://${raw}`;
+  }
+  try {
+    const url = new URL(raw);
+    return url.origin;
+  } catch {
+    return "http://localhost:3000";
+  }
 }
 
 export function isAllowCrawl(): boolean {
