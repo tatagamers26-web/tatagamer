@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Grid rhythm. The gap tightens on small screens so two 100px tiles still fit
+   a 375px viewport without horizontal scroll. */
+/* Grid rhythm. The widest tile spans 3 cells, so the viewport must always fit at
+   least 3 columns — otherwise the grid invents an implicit zero-width track and the
+   game grid ends up wider than the sections below it. Shrinking the cell keeps 3
+   columns available down to 320px. */
+:root {
+  --cell: 100px;
+  --grid-gap: 17px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --grid-gap: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    --cell: 90px;
+  }
+}
+
+body {
+  background-color: #4fdfe8;
+  background-image:
+    radial-gradient(circle at 20% 0%, #7cf0ea, transparent 55%),
+    radial-gradient(circle at 85% 15%, #35d2e4, transparent 50%);
+  background-attachment: fixed;
+  color: #06373b;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Search dialog open/close animation.
+   allow-discrete lets `display` and `overlay` participate in the transition, so
+   the closing frames still paint instead of the dialog vanishing instantly.
+   @starting-style supplies the pre-open values for the entry animation. */
+dialog {
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
+  transition:
+    opacity 180ms ease,
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    overlay 180ms allow-discrete,
+    display 180ms allow-discrete;
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+}
+
+dialog::backdrop {
+  opacity: 0;
+  transition:
+    opacity 180ms ease,
+    overlay 180ms allow-discrete,
+    display 180ms allow-discrete;
+}
+
+dialog[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog,
+  dialog::backdrop {
+    transition-duration: 1ms;
+    transform: none;
+  }
+}
+
+/* Single-game layout. The player sits beside a 3-column sidebar of related games,
+   matching the reference. Narrow screens can't spare 3 columns for a sidebar, so
+   the player goes full width there and the thumbnails simply flow beneath it. */
+.game-player {
+  grid-column: 1 / -1;
+  grid-row: span 3;
+}
+
+@media (min-width: 900px) {
+  .game-player {
+    grid-column: 4 / -1;
+    grid-row: 1 / span 6;
+  }
+}
