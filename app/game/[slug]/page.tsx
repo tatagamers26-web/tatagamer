@@ -7,6 +7,7 @@ import { getCategories, getGame, getGameBySlug, getGames } from "@/lib/games";
 import { Icon } from "../../ui-icon";
 import { CAT_ICON, SITE_NAME, siteUrl } from "../../seo";
 import { Player } from "./player";
+import { PokiFooter } from "../../footer";
 
 const SIDEBAR = 17;
 const MORE = 24;
@@ -110,16 +111,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, breadcrumbLd]) }}
       />
 
-      <main
-        className="grid justify-center"
-        style={{
-          gridTemplateColumns: "repeat(auto-fill, var(--cell))",
-          gridAutoRows: "var(--cell)",
-          gridAutoFlow: "row dense",
-          gap: "var(--grid-gap)",
-          margin: "var(--grid-gap) 0",
-        }}
-      >
+      <main className="poki-grid">
         {/* Brand card. Not pinned here — on a game page a floating card would sit
             over the player and the sidebar thumbnails while scrolling. */}
         <div className="flex h-[var(--cell)] w-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] bg-white shadow-[0_6px_10px_rgba(6,55,59,0.18)]">
@@ -140,6 +132,10 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
           </>
         </div>
 
+        <div className="game-player">
+          <Player url={game.url} title={game.title} thumb={game.thumb} category={game.category} />
+        </div>
+
         {/* Sidebar of same-category games, mirroring the reference layout. */}
         {sidebar.map((g) => (
           <Link
@@ -157,10 +153,6 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
             />
           </Link>
         ))}
-
-        <div className="game-player">
-          <Player url={game.url} title={game.title} thumb={game.thumb} category={game.category} />
-        </div>
 
         {more.map((g) => (
           <Link
@@ -202,18 +194,9 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
         ))}
       </main>
 
-      {/* Prose blocks live in their own grid: the grid above pins every row to
-          var(--cell), which would crush this content into a 100px row and make it
-          overlap whatever follows. Same column track, so edges still line up. */}
-      <div
-        className="grid justify-center pb-8"
-        style={{
-          gridTemplateColumns: "repeat(auto-fill, var(--cell))",
-          gap: "var(--grid-gap)",
-          marginBottom: "var(--grid-gap)",
-        }}
-      >
-        <article style={{ gridColumn: "1 / -1" }} className="rounded-[20px] bg-white p-6 sm:p-8">
+      {/* Full width prose, category navigation, and footer section */}
+      <div className="flex flex-col gap-[var(--grid-gap)] w-full my-[var(--grid-gap)] pb-8">
+        <article className="w-full rounded-[24px] bg-white p-5 sm:p-8 shadow-sm">
           <nav aria-label="Breadcrumb" className="mb-3 flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-teal-600">
             <Link href="/" className="hover:underline">
               {SITE_NAME}
@@ -234,7 +217,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
             </Link>
           </h1>
 
-          <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-zinc-600">
+          <div className="mt-4 space-y-4 text-base leading-relaxed text-zinc-600">
             {game.description && <p>{game.description}</p>}
 
             <figure className="flex justify-center py-3">
@@ -311,7 +294,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
           </div>
         </article>
 
-        <nav style={{ gridColumn: "1 / -1" }} className="rounded-[20px] bg-white p-5">
+        <nav className="w-full rounded-[24px] bg-white p-5 shadow-sm">
           <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
             <Link href="/" className="font-semibold text-teal-700 hover:underline">
               All Games
@@ -328,16 +311,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
           </div>
         </nav>
 
-        <footer
-          style={{ gridColumn: "1 / -1" }}
-          className="flex flex-wrap items-center gap-x-4 gap-y-2 pb-8 text-xs text-teal-900/70"
-        >
-          <span className="text-base font-black text-teal-800">
-            Game<span className="text-orange-600">Box</span>
-          </span>
-          <span>&copy; {new Date().getFullYear()} {SITE_NAME}</span>
-          <span className="ml-auto">{games.length.toLocaleString()} free games</span>
-        </footer>
+        <PokiFooter totalGames={games.length} />
       </div>
     </div>
   );

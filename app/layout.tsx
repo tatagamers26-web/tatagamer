@@ -15,6 +15,8 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const OG_IMAGE = "/og-default.png";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
   title: {
@@ -24,6 +26,21 @@ export const metadata: Metadata = {
   description:
     "Thousands of free browser games you can play instantly — racing, puzzles, action, .io and two-player. No downloads, no installs, no account needed.",
   applicationName: SITE_NAME,
+  keywords: [
+    "free browser games",
+    "online games no download",
+    "play games online free",
+    "html5 games",
+    "gamebox",
+    "io games",
+    "racing games",
+    "puzzle games",
+    "2 player games",
+    "action games",
+  ],
+  authors: [{ name: SITE_NAME, url: siteUrl() }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -32,22 +49,36 @@ export const metadata: Metadata = {
     description:
       "Thousands of free browser games you can play instantly. No downloads, no installs, no account needed.",
     url: "/",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} — Play Free Browser Games`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description: "Thousands of free browser games you can play instantly.",
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   category: "games",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
-  const orgLd = {
+  const websiteLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE_NAME,
@@ -62,6 +93,25 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     },
   };
 
+  const orgLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: siteUrl(),
+    logo: `${siteUrl()}/og-default.png`,
+    sameAs: [
+      "https://www.tiktok.com/@gamebox",
+      "https://www.instagram.com/gamebox",
+      "https://www.youtube.com/@gamebox",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "support@gamebox.com",
+      availableLanguage: "English",
+    },
+  };
+
   return (
     <html
       lang="en"
@@ -70,7 +120,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteLd, orgLd]) }}
         />
       </head>
       <body className="flex min-h-full flex-col">{children}</body>

@@ -4,6 +4,7 @@ import { getCategories, getGames, searchGames, type Game } from "@/lib/games";
 import { SearchDialog } from "./search-dialog";
 import { Icon } from "./ui-icon";
 import { CAT_ICON } from "./seo";
+import { PokiFooter } from "./footer";
 
 const PER_PAGE = 60;
 // Poki-style bento: fixed 100px cells, dense flow, tiles span 1-3 cells.
@@ -93,22 +94,10 @@ export default async function Home({ searchParams }: PageProps<"/">) {
     .slice(0, 12)
     .map((g) => ({ id: g.id, slug: g.slug, title: g.title, thumb: g.thumb }));
 
-  const gridTrack = {
-    gridTemplateColumns: "repeat(auto-fill, var(--cell))",
-    gap: "var(--grid-gap)",
-  };
 
   return (
     <div className="mx-auto w-full max-w-[1854px] px-2.5">
-      <main
-        className="grid justify-center"
-        style={{
-          ...gridTrack,
-          gridAutoRows: "var(--cell)",
-          gridAutoFlow: "row dense",
-          margin: "var(--grid-gap) 0",
-        }}
-      >
+      <main className="poki-grid">
         {/* Brand card. Occupies one 100px cell, but the visible card is fixed so it
             stays pinned while the grid scrolls. Omitting `left` makes the fixed box
             resolve to its static position, i.e. exactly over this placeholder cell. */}
@@ -138,46 +127,6 @@ export default async function Home({ searchParams }: PageProps<"/">) {
         {tiles.map(({ game, span }) => (
           <Tile key={game.id} game={game} span={span} />
         ))}
-      </main>
-
-      {tiles.length === 0 && (
-        <p className="py-20 text-center font-semibold text-teal-950">
-          No games found.{" "}
-          <Link href="/" className="underline">
-            Clear filters
-          </Link>
-        </p>
-      )}
-
-      {/* Shares the game grid's column track, so every section edge lines up with
-          the tiles above. Full-width blocks span 1/-1; category cards are 100px cells. */}
-      <div className="grid justify-center pb-8" style={{ ...gridTrack, marginBottom: "var(--grid-gap)" }}>
-        {totalPages > 1 && (
-          <nav
-            style={FULL_ROW}
-            className="flex flex-wrap items-center justify-center gap-2 text-sm font-bold"
-          >
-            {page > 1 && (
-              <Link
-                href={href(q, cat, page - 1)}
-                className="rounded-full bg-white px-4 py-2 text-teal-700 shadow-sm transition hover:bg-teal-50"
-              >
-                &larr; Prev
-              </Link>
-            )}
-            <span className="rounded-full bg-white/60 px-4 py-2 text-teal-900">
-              Page {page} of {totalPages}
-            </span>
-            {page < totalPages && (
-              <Link
-                href={href(q, cat, page + 1)}
-                className="rounded-full bg-white px-4 py-2 text-teal-700 shadow-sm transition hover:bg-teal-50"
-              >
-                Next &rarr;
-              </Link>
-            )}
-          </nav>
-        )}
 
         {categories.map((c) => {
           const active = c === cat;
@@ -203,14 +152,17 @@ export default async function Home({ searchParams }: PageProps<"/">) {
             </Link>
           );
         })}
+      </main>
 
+      {/* Full width prose, category navigation, and footer section */}
+      <div className="flex flex-col gap-[var(--grid-gap)] w-full my-[var(--grid-gap)] pb-8">
         {/* Editorial content. Original copy — required for AdSense approval. */}
-        <article style={FULL_ROW} className="rounded-[20px] bg-white p-6 sm:p-8">
+        <article className="w-full rounded-[24px] bg-white p-5 sm:p-8 shadow-sm">
           <h1 className="text-2xl font-bold text-teal-950">
             GameBox &mdash; play {games.length.toLocaleString()} free games in your browser
           </h1>
 
-          <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-zinc-600">
+          <div className="mt-4 space-y-4 text-base leading-relaxed text-zinc-600">
             <p>
               Every game here runs straight in your browser. Nothing to download, nothing to
               install, no account to create &mdash; pick a game, wait a second or two, and play.
@@ -299,7 +251,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           </div>
         </article>
 
-        <nav style={FULL_ROW} className="rounded-[20px] bg-white p-5">
+        <nav className="w-full rounded-[24px] bg-white p-5 shadow-sm">
           <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
             <Link href="/" className="font-semibold text-teal-700 hover:underline">
               All Games
@@ -312,16 +264,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           </div>
         </nav>
 
-        <footer
-          style={FULL_ROW}
-          className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-teal-900/70"
-        >
-          <span className="text-base font-black text-teal-800">
-            Game<span className="text-orange-600">Box</span>
-          </span>
-          <span>&copy; {new Date().getFullYear()} GameBox</span>
-          <span className="ml-auto">{games.length.toLocaleString()} free games</span>
-        </footer>
+        <PokiFooter totalGames={games.length} />
       </div>
     </div>
   );
