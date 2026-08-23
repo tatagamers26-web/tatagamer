@@ -41,10 +41,9 @@ export function Player({
     try {
       if (el.requestFullscreen) {
         await el.requestFullscreen();
-      } else if (
-        (el as HTMLElement & { webkitRequestFullscreen?: () => void }).webkitRequestFullscreen
-      ) {
-        (el as HTMLElement & { webkitRequestFullscreen: () => void }).webkitRequestFullscreen();
+      } else {
+        const webkitEl = el as unknown as { webkitRequestFullscreen?: () => void };
+        webkitEl.webkitRequestFullscreen?.();
       }
     } catch {
       // Fullscreen API may be blocked/unsupported — portal & fixed dvh handles full screen
@@ -55,10 +54,9 @@ export function Player({
     try {
       if (document.fullscreenElement) {
         await document.exitFullscreen();
-      } else if (
-        (document as Document & { webkitFullscreenElement?: Element }).webkitFullscreenElement
-      ) {
-        await (document as Document & { webkitExitFullscreen?: () => void }).webkitExitFullscreen?.();
+      } else {
+        const webkitDoc = document as unknown as { webkitExitFullscreen?: () => void };
+        await webkitDoc.webkitExitFullscreen?.();
       }
     } catch {
       // ignore
@@ -94,7 +92,7 @@ export function Player({
     const onChange = () => {
       const isNativeFs =
         !!document.fullscreenElement ||
-        !!(document as Document & { webkitFullscreenElement?: Element }).webkitFullscreenElement;
+        !!(document as unknown as { webkitFullscreenElement?: Element }).webkitFullscreenElement;
 
       if (!isNativeFs && playing) {
         setPlaying(false);
