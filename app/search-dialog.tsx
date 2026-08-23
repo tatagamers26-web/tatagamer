@@ -90,12 +90,12 @@ export function SearchDialog({ popular }: { popular: SearchGame[] }) {
             e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
           if (outside) d.close();
         }}
-        className="m-auto w-[calc(100%-2rem)] max-w-2xl rounded-3xl bg-white p-6 shadow-2xl backdrop:bg-teal-950/40 backdrop:backdrop-blur-sm"
+        className="m-auto w-[calc(100%-2rem)] max-w-2xl rounded-3xl bg-white p-4 sm:p-6 shadow-2xl backdrop:bg-teal-950/40 backdrop:backdrop-blur-sm"
       >
         <form action="/" onSubmit={() => ref.current?.close()} className="relative">
           <Icon
             name="search"
-            className="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400"
+            className="pointer-events-none absolute left-4 sm:left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400"
           />
           <input
             type="search"
@@ -105,7 +105,7 @@ export function SearchDialog({ popular }: { popular: SearchGame[] }) {
             autoFocus
             autoComplete="off"
             placeholder="What games are you looking for?"
-            className="w-full rounded-full bg-zinc-100 py-4 pl-14 pr-5 text-base text-zinc-800 outline-none ring-teal-400 placeholder:text-zinc-400 focus:ring-2"
+            className="w-full rounded-full bg-zinc-100 py-3.5 sm:py-4 pl-12 sm:pl-14 pr-5 text-sm sm:text-base text-zinc-800 outline-none ring-teal-400 placeholder:text-zinc-400 focus:ring-2"
           />
           {/* Keeps Enter submitting to the full results page. */}
           <button type="submit" className="sr-only">
@@ -113,18 +113,24 @@ export function SearchDialog({ popular }: { popular: SearchGame[] }) {
           </button>
         </form>
 
-        <h2 className="mb-3 mt-6 text-lg font-bold text-teal-950">{heading}</h2>
+        <h2 className="mb-3 mt-4 sm:mt-6 text-base sm:text-lg font-bold text-teal-950">{heading}</h2>
 
-        <div className="grid max-h-[46vh] grid-cols-4 gap-2 overflow-y-auto sm:grid-cols-6">
+        <div className="grid max-h-[50vh] sm:max-h-[60vh] grid-cols-4 gap-2.5 overflow-y-auto sm:grid-cols-6 items-start p-0.5">
           {showing.map((g) => (
             <Link
               key={g.id}
               href={`/game/${g.slug}`}
               title={g.title}
               onClick={() => ref.current?.close()}
-              className="relative aspect-square overflow-hidden rounded-xl ring-2 ring-transparent transition hover:ring-teal-400"
+              className="group relative block w-full aspect-square overflow-hidden rounded-xl ring-2 ring-transparent transition hover:ring-teal-400"
             >
-              <Image src={g.thumb} alt={g.title} fill sizes="90px" className="object-cover" />
+              <Image
+                src={g.thumb}
+                alt={g.title}
+                fill
+                sizes="(max-width: 640px) 25vw, 15vw"
+                className="object-cover transition duration-200 group-hover:scale-105"
+              />
             </Link>
           ))}
         </div>
