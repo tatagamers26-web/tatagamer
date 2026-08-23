@@ -59,7 +59,7 @@ export function PokiFooter({ totalGames }: { totalGames?: number }) {
           <div className="flex flex-col gap-4">
             <Link href="/" className="group inline-flex items-center">
               <span className="text-3xl sm:text-4xl font-black tracking-tight text-[#06373b] group-hover:text-teal-600 transition-colors">
-                Game<span className="text-orange-500">Box</span>
+                Tata<span className="text-orange-500">Gamer</span>
               </span>
             </Link>
             <p className="text-base font-medium text-slate-500 leading-relaxed">
@@ -173,14 +173,14 @@ export function PokiFooter({ totalGames }: { totalGames?: number }) {
             </ul>
           </div>
 
-          {/* Column 4: ABOUT GAMEBOX */}
+            {/* Column 4: ABOUT TATAGAMER */}
           <div className="flex flex-col gap-3">
             <h3 className="text-sm font-extrabold tracking-wider uppercase text-slate-400">
-              ABOUT GAMEBOX
+              ABOUT TATAGAMER
             </h3>
             <div className="bg-slate-50/80 rounded-2xl p-5 border border-slate-100 flex flex-col gap-2.5 text-base font-medium text-slate-600 leading-relaxed">
               <p>
-                GameBox brings you an endless collection of instant browser games. Play high-octane racing, tactical puzzles, and multiplayer games seamlessly.
+                {SITE_NAME} brings you an endless collection of instant browser games. Play high-octane racing, tactical puzzles, and multiplayer games seamlessly.
               </p>
               <p>
                 Built for pure fun on mobile, tablet, and PC. No downloads, no waiting.

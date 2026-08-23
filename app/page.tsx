@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getCategories, getGames, searchGames, type Game } from "@/lib/games";
 import { SearchDialog } from "./search-dialog";
 import { Icon } from "./ui-icon";
-import { CAT_ICON } from "./seo";
+import { CAT_ICON, SITE_NAME } from "./seo";
 import { PokiFooter } from "./footer";
 
 const PER_PAGE = 60;
@@ -109,7 +109,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
               href="/"
               className="text-[13px] font-black leading-none tracking-tight text-teal-600"
             >
-              Game<span className="text-orange-500">Box</span>
+              Tata<span className="text-orange-500">Gamer</span>
             </Link>
             <div className="flex gap-1.5">
               <Link
@@ -159,7 +159,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
         {/* Editorial content. Original copy — required for AdSense approval. */}
         <article className="w-full rounded-[24px] bg-white p-5 sm:p-8 shadow-sm">
           <h1 className="text-2xl font-bold text-teal-950">
-            GameBox &mdash; play {games.length.toLocaleString()} free games in your browser
+            {SITE_NAME} &mdash; play {games.length.toLocaleString()} free games in your browser
           </h1>
 
           <div className="mt-4 space-y-4 text-base leading-relaxed text-zinc-600">
@@ -169,7 +169,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
               It works the same on a phone, a tablet, a school laptop or a desktop.
             </p>
 
-            <h2 className="pt-3 text-lg font-bold text-teal-950">How GameBox works</h2>
+            <h2 className="pt-3 text-lg font-bold text-teal-950">How {SITE_NAME} works</h2>
             <p>
               The homepage reshuffles its featured games on every visit, so the big tiles are
               never quite the same twice. Below them sits the rest of the catalogue in popularity
@@ -219,7 +219,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
             <h2 className="pt-3 text-lg font-bold text-teal-950">Common questions</h2>
             <p>
               <strong className="text-teal-950">Do I need to sign up?</strong> No. There are no
-              accounts on GameBox. Open a game and play.
+              accounts on {SITE_NAME}. Open a game and play.
             </p>
             <p>
               <strong className="text-teal-950">Does it cost anything?</strong> No. Every game

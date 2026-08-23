@@ -1,4 +1,4 @@
-export const SITE_NAME = "GameBox";
+export const SITE_NAME = "TataGamer";
 export const SITE_TAGLINE = "Play free games in your browser";
 
 /**

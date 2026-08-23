@@ -120,7 +120,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
               href="/"
               className="text-[13px] font-black leading-none tracking-tight text-teal-600"
             >
-              Game<span className="text-orange-500">Box</span>
+              Tata<span className="text-orange-500">Gamer</span>
             </Link>
             <Link
               href="/"

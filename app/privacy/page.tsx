@@ -10,12 +10,12 @@ const OG_IMAGE = "/og-default.png";
 export const metadata: Metadata = {
   title: `Privacy Center & Policy — ${SITE_NAME}`,
   description:
-    "Learn about how GameBox protects your privacy, uses cookies, complies with COPPA, GDPR, and CCPA, and manages non-personal technical telemetry.",
+    "Learn about how TataGamer protects your privacy, uses cookies, complies with COPPA, GDPR, and CCPA, and manages non-personal technical telemetry.",
   alternates: { canonical: "/privacy" },
   openGraph: {
     title: `Privacy Center & Policy — ${SITE_NAME}`,
     description:
-      "Learn about how GameBox protects your privacy, uses cookies, complies with COPPA, GDPR, and CCPA.",
+      "Learn about how TataGamer protects your privacy, uses cookies, complies with COPPA, GDPR, and CCPA.",
     url: "/privacy",
     siteName: SITE_NAME,
     type: "website",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `Privacy Center & Policy — ${SITE_NAME}`,
-    description: "Your privacy is important to us. Learn how GameBox keeps your data safe.",
+    description: "Your privacy is important to us. Learn how TataGamer keeps your data safe.",
     images: [OG_IMAGE],
   },
 };
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
               href="/"
               className="text-[13px] font-black leading-none tracking-tight text-teal-600"
             >
-              Game<span className="text-orange-500">Box</span>
+              Tata<span className="text-orange-500">Gamer</span>
             </Link>
             <Link
               href="/"
@@ -154,7 +154,7 @@ export default function PrivacyPage() {
                 1. Introduction & Overview
               </h3>
               <p>
-                Welcome to <strong>{SITE_NAME}</strong> (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;). We are committed to safeguarding the privacy of our visitors while providing a safe, instant, and fun online gaming platform. This Privacy Policy explains how we collect, use, disclose, and protect your information when you visit our website at <code>gamebox.com</code> and play our HTML5 games.
+                Welcome to <strong>{SITE_NAME}</strong> (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;). We are committed to safeguarding the privacy of our visitors while providing a safe, instant, and fun online gaming platform. This Privacy Policy explains how we collect, use, disclose, and protect your information when you visit our website at <code>tatagamer.com</code> and play our HTML5 games.
               </p>
               <p className="mt-2">
                 By accessing or using {SITE_NAME}, you agree to the practices described in this Privacy Policy. If you do not agree with this policy, please discontinue use of our site.
@@ -279,8 +279,8 @@ export default function PrivacyPage() {
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
                   <Icon name="pencil" className="w-5 h-5 text-teal-600 mx-auto mb-1" />
                   <div className="text-xs font-bold text-zinc-400 uppercase">Email Us</div>
-                  <a href="mailto:privacy@gamebox.com" className="text-xs font-bold text-[#009cff] hover:underline">
-                    privacy@gamebox.com
+                  <a href="mailto:privacy@tatagamer.com" className="text-xs font-bold text-[#009cff] hover:underline">
+                    privacy@tatagamer.com
                   </a>
                 </div>
 
@@ -293,7 +293,7 @@ export default function PrivacyPage() {
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
                   <Icon name="mapPin" className="w-5 h-5 text-teal-600 mx-auto mb-1" />
                   <div className="text-xs font-bold text-zinc-400 uppercase">Global Office</div>
-                  <div className="text-xs font-bold text-[#06373b]">GameBox Inc. Privacy Team</div>
+                  <div className="text-xs font-bold text-[#06373b]">TataGamer Inc. Privacy Team</div>
                 </div>
               </div>
             </section>

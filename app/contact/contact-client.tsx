@@ -13,7 +13,7 @@ export function ContactClient() {
     message: "",
   });
 
-  const email = "hello@gamebox.com";
+  const email = "hello@tatagamer.com";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -23,7 +23,7 @@ export function PrivacyClient() {
               Cookie Preference Settings
             </h2>
             <p className="text-xs text-zinc-500 mt-0.5">
-              Control how cookies are stored on your device when playing games on GameBox.
+              Control how cookies are stored on your device when playing games on TataGamer.
             </p>
           </div>
           {savedStatus && (
@@ -111,7 +111,7 @@ export function PrivacyClient() {
           </span>
         </div>
         <p className="text-base text-zinc-600 leading-relaxed">
-          Your <strong>IP address</strong> allows our servers to deliver localized language settings and comply with regional privacy rules (such as GDPR in Europe or COPPA in the United States). All game content on GameBox is delivered in English by default.
+          Your <strong>IP address</strong> allows our servers to deliver localized language settings and comply with regional privacy rules (such as GDPR in Europe or COPPA in the United States). All game content on TataGamer is delivered in English by default.
         </p>
       </div>
     </div>

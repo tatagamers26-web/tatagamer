@@ -10,12 +10,12 @@ const OG_IMAGE = "/og-default.png";
 export const metadata: Metadata = {
   title: `Frequently Asked Questions — ${SITE_NAME}`,
   description:
-    "Find clear answers to common questions about playing free browser games on GameBox, device support, safety, privacy, ad-free options, and game publishing.",
+    "Find clear answers to common questions about playing free browser games on TataGamer, device support, safety, privacy, ad-free options, and game publishing.",
   alternates: { canonical: "/faq" },
   openGraph: {
     title: `Frequently Asked Questions — ${SITE_NAME}`,
     description:
-      "Find clear answers to common questions about playing free browser games on GameBox, device support, safety, privacy, ad-free options, and game publishing.",
+      "Find clear answers to common questions about playing free browser games on TataGamer, device support, safety, privacy, ad-free options, and game publishing.",
     url: "/faq",
     siteName: SITE_NAME,
     type: "website",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `Frequently Asked Questions — ${SITE_NAME}`,
-    description: "Get answers to all your questions about playing games on GameBox.",
+    description: "Get answers to all your questions about playing games on TataGamer.",
     images: [OG_IMAGE],
   },
 };
@@ -37,11 +37,11 @@ export const FAQ_DATA = [
     questions: [
       {
         q: "How do I save or reset my game progress?",
-        a: "Most HTML5 browser games on GameBox automatically save your high scores, levels, and progress directly in your web browser's local storage (LocalStorage and IndexedDB). To ensure your progress is saved, avoid playing in Private/Incognito mode and do not clear your browser cookies or site data. If you want to reset your progress, simply clear your browser cookies for GameBox or use the in-game settings menu if available.",
+        a: "Most HTML5 browser games on TataGamer automatically save your high scores, levels, and progress directly in your web browser's local storage (LocalStorage and IndexedDB). To ensure your progress is saved, avoid playing in Private/Incognito mode and do not clear your browser cookies or site data. If you want to reset your progress, simply clear your browser cookies for TataGamer or use the in-game settings menu if available.",
       },
       {
-        q: "How do I play games on GameBox?",
-        a: "Playing games on GameBox is instant and effortless! Simply browse our category grid or use the search bar to find any game you like, click on the game tile, and it will load directly inside your browser within seconds. No installations, downloads, plugins, or account sign-ups are required.",
+        q: "How do I play games on TataGamer?",
+        a: "Playing games on TataGamer is instant and effortless! Simply browse our category grid or use the search bar to find any game you like, click on the game tile, and it will load directly inside your browser within seconds. No installations, downloads, plugins, or account sign-ups are required.",
       },
       {
         q: "How do I control the volume or mute game audio?",
@@ -49,7 +49,7 @@ export const FAQ_DATA = [
       },
       {
         q: "How do I switch a game to Fullscreen mode?",
-        a: "Underneath every game frame on GameBox, you'll find an 'Expand / Fullscreen' button. Clicking this will expand the game canvas to fit your entire screen. Press the 'Esc' key on your keyboard or tap the screen exit button at any time to leave Fullscreen mode.",
+        a: "Underneath every game frame on TataGamer, you'll find an 'Expand / Fullscreen' button. Clicking this will expand the game canvas to fit your entire screen. Press the 'Esc' key on your keyboard or tap the screen exit button at any time to leave Fullscreen mode.",
       },
       {
         q: "What should I do if a game isn't loading or stutters?",
@@ -57,7 +57,7 @@ export const FAQ_DATA = [
       },
       {
         q: "Why is a game blocked at my school or workplace?",
-        a: "Some school and corporate network administrators restrict access to gaming websites via firewall filters. If GameBox is filtered on your network, we recommend contacting your network administrator or playing on a personal mobile network or home Wi-Fi.",
+        a: "Some school and corporate network administrators restrict access to gaming websites via firewall filters. If TataGamer is filtered on your network, we recommend contacting your network administrator or playing on a personal mobile network or home Wi-Fi.",
       },
     ],
   },
@@ -67,16 +67,16 @@ export const FAQ_DATA = [
     icon: "shieldCheck",
     questions: [
       {
-        q: "Is GameBox safe and family-friendly for kids?",
-        a: "Yes! Safety is our top priority. All games published on GameBox undergo strict manual screening and quality checks to ensure they are safe, free of malware, and free of malicious software. We curate family-appropriate titles and do not host unsafe or harmful content.",
+        q: "Is TataGamer safe and family-friendly for kids?",
+        a: "Yes! Safety is our top priority. All games published on TataGamer undergo strict manual screening and quality checks to ensure they are safe, free of malware, and free of malicious software. We curate family-appropriate titles and do not host unsafe or harmful content.",
       },
       {
-        q: "Can I catch a virus or malware from playing on GameBox?",
-        a: "No. All games on GameBox run in a secure, sandboxed web browser environment (HTML5 / WebAssembly). You never download or execute `.exe` or installation files on your computer or mobile device, eliminating the risk of virus infections.",
+        q: "Can I catch a virus or malware from playing on TataGamer?",
+        a: "No. All games on TataGamer run in a secure, sandboxed web browser environment (HTML5 / WebAssembly). You never download or execute `.exe` or installation files on your computer or mobile device, eliminating the risk of virus infections.",
       },
       {
-        q: "How does GameBox protect user privacy and data?",
-        a: "GameBox does not require account creation, email registration, or personal identity details. We strictly comply with global privacy standards including COPPA and GDPR. We only collect non-identifiable technical telemetry (such as browser type and aggregate gameplay counts) to optimize website performance.",
+        q: "How does TataGamer protect user privacy and data?",
+        a: "TataGamer does not require account creation, email registration, or personal identity details. We strictly comply with global privacy standards including COPPA and GDPR. We only collect non-identifiable technical telemetry (such as browser type and aggregate gameplay counts) to optimize website performance.",
       },
       {
         q: "Are there multiplayer chat features in games?",
@@ -95,7 +95,7 @@ export const FAQ_DATA = [
     questions: [
       {
         q: "Do I need to sign up or create an account?",
-        a: "No! You can play 100% of the games on GameBox instantly without creating an account or giving any personal information.",
+        a: "No! You can play 100% of the games on TataGamer instantly without creating an account or giving any personal information.",
       },
       {
         q: "What are the benefits of no-registration gaming?",
@@ -103,7 +103,7 @@ export const FAQ_DATA = [
       },
       {
         q: "Can I bookmark or save my favorite games?",
-        a: "Yes! You can bookmark any game page in your web browser (Ctrl + D on Windows, Cmd + D on Mac) or add GameBox to your mobile phone home screen as a Progressive Web App (PWA) for one-tap access anytime.",
+        a: "Yes! You can bookmark any game page in your web browser (Ctrl + D on Windows, Cmd + D on Mac) or add TataGamer to your mobile phone home screen as a Progressive Web App (PWA) for one-tap access anytime.",
       },
     ],
   },
@@ -113,15 +113,15 @@ export const FAQ_DATA = [
     icon: "devices",
     questions: [
       {
-        q: "Can I play GameBox games on mobile phones and tablets?",
+        q: "Can I play TataGamer games on mobile phones and tablets?",
         a: "Absolutely! Over 95% of our game library is built with modern HTML5 technology, featuring touch controls optimized for iOS (iPhone/iPad), Android, Chromebooks, and tablets.",
       },
       {
-        q: "Is there an official GameBox app on Google Play or App Store?",
-        a: "You don't need to download an app from an App Store! GameBox is a high-performance Web App. On your phone's browser, tap 'Add to Home Screen' to install GameBox directly as a lightweight app on your phone without using up storage space.",
+        q: "Is there an official TataGamer app on Google Play or App Store?",
+        a: "You don't need to download an app from an App Store! TataGamer is a high-performance Web App. On your phone's browser, tap 'Add to Home Screen' to install TataGamer directly as a lightweight app on your phone without using up storage space.",
       },
       {
-        q: "Can I play games on GameBox offline?",
+        q: "Can I play games on TataGamer offline?",
         a: "Games require an initial internet connection to load their assets. However, once loaded, many single-player puzzle and arcade games will continue running smoothly even if your internet connection temporarily drops.",
       },
     ],
@@ -132,8 +132,8 @@ export const FAQ_DATA = [
     icon: "adIcon",
     questions: [
       {
-        q: "Why are there advertisements on GameBox?",
-        a: "Advertisements allow us to keep GameBox 100% free for millions of players worldwide, as well as pay independent game developers fairly for their hard work. We work closely with certified ad networks to display clean, non-intrusive ads.",
+        q: "Why are there advertisements on TataGamer?",
+        a: "Advertisements allow us to keep TataGamer 100% free for millions of players worldwide, as well as pay independent game developers fairly for their hard work. We work closely with certified ad networks to display clean, non-intrusive ads.",
       },
       {
         q: "Can I skip video ads in games?",
@@ -141,12 +141,12 @@ export const FAQ_DATA = [
       },
       {
         q: "Will an ad-blocker affect my gameplay experience?",
-        a: "Some aggressive ad-blockers can accidentally block essential game scripts or save files, causing games to freeze or fail to load. If you experience loading issues, we recommend whitelist-granting GameBox in your ad-blocker extension.",
+        a: "Some aggressive ad-blockers can accidentally block essential game scripts or save files, causing games to freeze or fail to load. If you experience loading issues, we recommend whitelist-granting TataGamer in your ad-blocker extension.",
       },
     ],
   },
   {
-    id: "about-gamebox",
+    id: "about-tatagamer",
     category: `About ${SITE_NAME}`,
     icon: "infoCircle",
     questions: [
@@ -163,8 +163,8 @@ export const FAQ_DATA = [
         a: `Our automated systems and curation team refresh the ${SITE_NAME} catalog regularly, adding fresh, trending, and top-rated games every week.`,
       },
       {
-        q: "Who operates and builds GameBox?",
-        a: "GameBox is built by a dedicated team of web engineers, game designers, and UX specialists passionate about making gaming accessible, fast, and fun for everyone around the globe.",
+        q: "Who operates and builds TataGamer?",
+        a: "TataGamer is built by a dedicated team of web engineers, game designers, and UX specialists passionate about making gaming accessible, fast, and fun for everyone around the globe.",
       },
     ],
   },
@@ -174,15 +174,15 @@ export const FAQ_DATA = [
     icon: "briefcase",
     questions: [
       {
-        q: "I am a game developer — how can I publish my game on GameBox?",
+        q: "I am a game developer — how can I publish my game on TataGamer?",
         a: "We love partnering with talented HTML5 game creators and studios! You can submit your game portfolio or HTML5 build to our developer partnership portal for review and monetization opportunities.",
       },
       {
-        q: "I want to advertise my brand or product on GameBox",
+        q: "I want to advertise my brand or product on TataGamer",
         a: "For brand sponsorships, custom ad placements, or programmatic advertising inquiries, reach out to our partnerships team via our contact form.",
       },
       {
-        q: "Where can I submit job applications to work at GameBox?",
+        q: "Where can I submit job applications to work at TataGamer?",
         a: "Check out our Careers page or reach out to our team with your resume and portfolio. We're always looking for skilled developers, content creators, and game curators!",
       },
     ],
@@ -220,7 +220,7 @@ export default function FAQPage() {
               href="/"
               className="text-[13px] font-black leading-none tracking-tight text-teal-600"
             >
-              Game<span className="text-orange-500">Box</span>
+              Tata<span className="text-orange-500">Gamer</span>
             </Link>
             <Link
               href="/"
@@ -269,7 +269,7 @@ export default function FAQPage() {
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <a
-              href="mailto:support@gamebox.com"
+              href="mailto:support@tatagamer.com"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#009cff] text-white font-bold text-sm shadow-md hover:bg-sky-600 hover:scale-105 active:scale-95 transition-all cursor-pointer"
             >
               <span>Contact Support</span>

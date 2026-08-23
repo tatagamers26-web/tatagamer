@@ -10,12 +10,12 @@ const OG_IMAGE = "/og-default.png";
 export const metadata: Metadata = {
   title: `Contact Us — ${SITE_NAME}`,
   description:
-    "We'd love to hear from you! Get in touch with the GameBox team for support, developer publishing inquiries, press, or business partnerships.",
+    "We'd love to hear from you! Get in touch with the TataGamer team for support, developer publishing inquiries, press, or business partnerships.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: `Contact Us — ${SITE_NAME}`,
     description:
-      "Get in touch with the GameBox team for support, game publishing, press, or partnerships.",
+      "Get in touch with the TataGamer team for support, game publishing, press, or partnerships.",
     url: "/contact",
     siteName: SITE_NAME,
     type: "website",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `Contact Us — ${SITE_NAME}`,
-    description: "Get in touch with the GameBox team for support, publishing inquiries, or press.",
+    description: "Get in touch with the TataGamer team for support, publishing inquiries, or press.",
     images: [OG_IMAGE],
   },
 };
@@ -40,7 +40,7 @@ export default function ContactPage() {
             href="/"
             className="text-[13px] font-black leading-none tracking-tight text-teal-600"
           >
-            Game<span className="text-orange-500">Box</span>
+            Tata<span className="text-orange-500">Gamer</span>
           </Link>
           <Link
             href="/"
@@ -135,7 +135,7 @@ export default function ContactPage() {
               href="/faq#partners-developers"
               className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#009cff] hover:underline"
             >
-              <span>Explore GameBox for Developers</span>
+              <span>Explore {SITE_NAME} for Developers</span>
               <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
@@ -170,7 +170,7 @@ export default function ContactPage() {
               </p>
             </div>
             <a
-              href="mailto:press@gamebox.com"
+              href="mailto:press@tatagamer.com"
               className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#009cff] hover:underline"
             >
               <span>Contact our press team</span>

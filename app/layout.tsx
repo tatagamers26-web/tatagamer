@@ -1,7 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE_NAME, SITE_TAGLINE, siteUrl } from "./seo";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: "cover",
+  themeColor: "#4fdfe8",
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +39,8 @@ export const metadata: Metadata = {
     "online games no download",
     "play games online free",
     "html5 games",
-    "gamebox",
+    "tatagamer",
+    "tata gamer",
     "io games",
     "racing games",
     "puzzle games",
@@ -100,14 +109,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     url: siteUrl(),
     logo: `${siteUrl()}/og-default.png`,
     sameAs: [
-      "https://www.tiktok.com/@gamebox",
-      "https://www.instagram.com/gamebox",
-      "https://www.youtube.com/@gamebox",
+      "https://www.tiktok.com/@tatagamer",
+      "https://www.instagram.com/tatagamer",
+      "https://www.youtube.com/@tatagamer",
     ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      email: "support@gamebox.com",
+      email: "support@tatagamer.com",
       availableLanguage: "English",
     },
   };
