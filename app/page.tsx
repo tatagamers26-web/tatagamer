@@ -152,120 +152,120 @@ export default async function Home({ searchParams }: PageProps<"/">) {
             </Link>
           );
         })}
-      </main>
 
-      {/* Full width prose, category navigation, and footer section */}
-      <div className="flex flex-col gap-[var(--grid-gap)] w-full my-[var(--grid-gap)] pb-8">
-        {/* Editorial content. Original copy — required for AdSense approval. */}
-        <article className="w-full rounded-[24px] bg-white p-5 sm:p-8 shadow-sm">
-          <h1 className="text-2xl font-bold text-teal-950">
-            {SITE_NAME} &mdash; play {games.length.toLocaleString()} free games in your browser
-          </h1>
+        {/* Full width prose, category navigation, and footer section aligned with grid */}
+        <div style={{ gridColumn: "1 / -1" }} className="flex flex-col gap-[var(--grid-gap)] w-full my-[var(--grid-gap)] pb-8">
+          {/* Editorial content. Original copy — required for AdSense approval. */}
+          <article className="w-full rounded-[24px] bg-white p-5 sm:p-8 shadow-sm">
+            <h1 className="text-2xl font-bold text-teal-950">
+              {SITE_NAME} &mdash; play {games.length.toLocaleString()} free games in your browser
+            </h1>
 
-          <div className="mt-4 space-y-4 text-base leading-relaxed text-zinc-600">
-            <p>
-              Every game here runs straight in your browser. Nothing to download, nothing to
-              install, no account to create &mdash; pick a game, wait a second or two, and play.
-              It works the same on a phone, a tablet, a school laptop or a desktop.
-            </p>
+            <div className="mt-4 space-y-4 text-base leading-relaxed text-zinc-600">
+              <p>
+                Every game here runs straight in your browser. Nothing to download, nothing to
+                install, no account to create &mdash; pick a game, wait a second or two, and play.
+                It works the same on a phone, a tablet, a school laptop or a desktop.
+              </p>
 
-            <h2 className="pt-3 text-lg font-bold text-teal-950">How {SITE_NAME} works</h2>
-            <p>
-              The homepage reshuffles its featured games on every visit, so the big tiles are
-              never quite the same twice. Below them sits the rest of the catalogue in popularity
-              order, newest and most-played first. Use the category boxes to narrow things down,
-              or the search box if you already know what you want &mdash; it matches both game
-              titles and tags, so searching &ldquo;zombie&rdquo; finds games that never mention it
-              in the title.
-            </p>
+              <h2 className="pt-3 text-lg font-bold text-teal-950">How {SITE_NAME} works</h2>
+              <p>
+                The homepage reshuffles its featured games on every visit, so the big tiles are
+                never quite the same twice. Below them sits the rest of the catalogue in popularity
+                order, newest and most-played first. Use the category boxes to narrow things down,
+                or the search box if you already know what you want &mdash; it matches both game
+                titles and tags, so searching &ldquo;zombie&rdquo; finds games that never mention it
+                in the title.
+              </p>
 
-            <h2 className="pt-3 text-lg font-bold text-teal-950">What you&apos;ll find here</h2>
-            <ul className="space-y-2 pl-5">
-              <li className="list-disc">
-                <strong className="text-teal-950">Racing and driving</strong> &mdash; street
-                circuits, stunt ramps, parking challenges and truck simulators.
-              </li>
-              <li className="list-disc">
-                <strong className="text-teal-950">Puzzles</strong> &mdash; match-3, jigsaws, block
-                stacking and logic games for when you want to slow down and think.
-              </li>
-              <li className="list-disc">
-                <strong className="text-teal-950">Action and shooting</strong> &mdash; platformers,
-                survival runs, target practice and boss fights.
-              </li>
-              <li className="list-disc">
-                <strong className="text-teal-950">2 Player</strong> &mdash; split-keyboard games
-                you can play with someone next to you, no second device needed.
-              </li>
-              <li className="list-disc">
-                <strong className="text-teal-950">.IO and multiplayer</strong> &mdash; grow,
-                outlast and outmanoeuvre other players in real time.
-              </li>
-              <li className="list-disc">
-                <strong className="text-teal-950">Hypercasual</strong> &mdash; one-button games
-                that take five seconds to learn and a while to put down.
-              </li>
-            </ul>
+              <h2 className="pt-3 text-lg font-bold text-teal-950">What you&apos;ll find here</h2>
+              <ul className="space-y-2 pl-5">
+                <li className="list-disc">
+                  <strong className="text-teal-950">Racing and driving</strong> &mdash; street
+                  circuits, stunt ramps, parking challenges and truck simulators.
+                </li>
+                <li className="list-disc">
+                  <strong className="text-teal-950">Puzzles</strong> &mdash; match-3, jigsaws, block
+                  stacking and logic games for when you want to slow down and think.
+                </li>
+                <li className="list-disc">
+                  <strong className="text-teal-950">Action and shooting</strong> &mdash; platformers,
+                  survival runs, target practice and boss fights.
+                </li>
+                <li className="list-disc">
+                  <strong className="text-teal-950">2 Player</strong> &mdash; split-keyboard games
+                  you can play with someone next to you, no second device needed.
+                </li>
+                <li className="list-disc">
+                  <strong className="text-teal-950">.IO and multiplayer</strong> &mdash; grow,
+                  outlast and outmanoeuvre other players in real time.
+                </li>
+                <li className="list-disc">
+                  <strong className="text-teal-950">Hypercasual</strong> &mdash; one-button games
+                  that take five seconds to learn and a while to put down.
+                </li>
+              </ul>
 
-            <h2 className="pt-3 text-lg font-bold text-teal-950">Playing on a phone</h2>
-            <p>
-              Most of the catalogue is built for touch, so tapping and swiping is all you need.
-              Games that expect arrow keys or WASD will say so in their instructions on the play
-              page &mdash; those are worth saving for a laptop. Turning your phone sideways helps
-              on anything that scrolls horizontally, and every game runs full-screen if you want
-              the controls out of the way.
-            </p>
+              <h2 className="pt-3 text-lg font-bold text-teal-950">Playing on a phone</h2>
+              <p>
+                Most of the catalogue is built for touch, so tapping and swiping is all you need.
+                Games that expect arrow keys or WASD will say so in their instructions on the play
+                page &mdash; those are worth saving for a laptop. Turning your phone sideways helps
+                on anything that scrolls horizontally, and every game runs full-screen if you want
+                the controls out of the way.
+              </p>
 
-            <h2 className="pt-3 text-lg font-bold text-teal-950">Common questions</h2>
-            <p>
-              <strong className="text-teal-950">Do I need to sign up?</strong> No. There are no
-              accounts on {SITE_NAME}. Open a game and play.
-            </p>
-            <p>
-              <strong className="text-teal-950">Does it cost anything?</strong> No. Every game
-              listed here is free to play.
-            </p>
-            <p>
-              <strong className="text-teal-950">Will it work on my phone?</strong> Most games
-              support touch controls. A few are built for a keyboard and play better on a computer
-              &mdash; those usually say so in their instructions.
-            </p>
-            <p>
-              <strong className="text-teal-950">A game won&apos;t load. What now?</strong> Refresh
-              the page first. If it still won&apos;t start, check whether an ad blocker or a strict
-              privacy extension is blocking the game frame.
-            </p>
-            <p>
-              <strong className="text-teal-950">Can&apos;t find a game?</strong> Try searching a
-              single word from the title, or browse the category boxes above &mdash; the catalogue
-              is large and titles vary.
-            </p>
-            <p>
-              <strong className="text-teal-950">How often are new games added?</strong> The
-              catalogue refreshes automatically every hour, so new titles turn up on their own.
-            </p>
-            <p>
-              <strong className="text-teal-950">Can I play the same game again later?</strong>{" "}
-              Yes. Every game has its own page, so bookmarking it takes you straight back.
-            </p>
-          </div>
-        </article>
+              <h2 className="pt-3 text-lg font-bold text-teal-950">Common questions</h2>
+              <p>
+                <strong className="text-teal-950">Do I need to sign up?</strong> No. There are no
+                accounts on {SITE_NAME}. Open a game and play.
+              </p>
+              <p>
+                <strong className="text-teal-950">Does it cost anything?</strong> No. Every game
+                listed here is free to play.
+              </p>
+              <p>
+                <strong className="text-teal-950">Will it work on my phone?</strong> Most games
+                support touch controls. A few are built for a keyboard and play better on a computer
+                &mdash; those usually say so in their instructions.
+              </p>
+              <p>
+                <strong className="text-teal-950">A game won&apos;t load. What now?</strong> Refresh
+                the page first. If it still won&apos;t start, check whether an ad blocker or a strict
+                privacy extension is blocking the game frame.
+              </p>
+              <p>
+                <strong className="text-teal-950">Can&apos;t find a game?</strong> Try searching a
+                single word from the title, or browse the category boxes above &mdash; the catalogue
+                is large and titles vary.
+              </p>
+              <p>
+                <strong className="text-teal-950">How often are new games added?</strong> The
+                catalogue refreshes automatically every hour, so new titles turn up on their own.
+              </p>
+              <p>
+                <strong className="text-teal-950">Can I play the same game again later?</strong>{" "}
+                Yes. Every game has its own page, so bookmarking it takes you straight back.
+              </p>
+            </div>
+          </article>
 
-        <nav className="w-full rounded-[24px] bg-white p-5 shadow-sm">
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-            <Link href="/" className="font-semibold text-teal-700 hover:underline">
-              All Games
-            </Link>
-            {categories.map((c) => (
-              <Link key={c} href={href("", c, 1)} className="text-teal-700 hover:underline">
-                {c} Games
+          <nav className="w-full rounded-[24px] bg-white p-5 shadow-sm">
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              <Link href="/" className="font-semibold text-teal-700 hover:underline">
+                All Games
               </Link>
-            ))}
-          </div>
-        </nav>
+              {categories.map((c) => (
+                <Link key={c} href={href("", c, 1)} className="text-teal-700 hover:underline">
+                  {c} Games
+                </Link>
+              ))}
+            </div>
+          </nav>
 
-        <PokiFooter totalGames={games.length} />
-      </div>
+          <PokiFooter totalGames={games.length} />
+        </div>
+      </main>
     </div>
   );
 }

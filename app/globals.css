@@ -99,6 +99,7 @@ dialog[open]::backdrop {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   dialog,
   dialog::backdrop {
     transition-duration: 1ms;
@@ -135,4 +136,61 @@ dialog[open]::backdrop {
     grid-column: 4 / -1;
     grid-row: 1 / span 6;
   }
+}
+
+/* ─── Ad unit placement helpers ─────────────────────────────────────────────
+   .ad-skyscraper   – 160×600 left rail ad. Spans 2 cells (≈217px) so the
+                      160px ad has only a small margin each side. Hidden on
+                      mobile — the gap doesn't exist there.
+   .ad-below-player – leaderboard (728×90 / 320×100) placed directly below
+                      the game player in the same column span.
+────────────────────────────────────────────────────────────────────────── */
+.ad-skyscraper {
+  display: none;
+  /* hidden on mobile */
+  grid-column: 1 / 3;
+  /* 2 cells ≈ 217px — fits 160px + breathing room */
+  grid-row: 2 / 8;
+  /* same height as the game player (rows 2–7) */
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .ad-skyscraper {
+    display: flex;
+  }
+}
+
+/* Below-player banner — full-width on mobile, aligns under the player on desktop */
+.ad-below-player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1 / -1;
+  padding: 4px 0;
+}
+
+@media (min-width: 900px) {
+  .ad-below-player {
+    grid-column: 4 / -1;
+    /* same start column as .game-player */
+  }
+}
+
+/* ─── Unfilled Ad & No-Ad Auto-Management ────────────────────────────────────
+   If Google AdSense has no ad to show (data-ad-status="unfilled"), or if
+   an ad container is empty / hidden:
+   1. The ad unit automatically collapses (display: none !important).
+   2. The right-side player wrapper (flex-1) expands to 100% width automatically.
+   3. The left grid rail reflows thumbnail tiles into rows 2–7 automatically.
+   4. The below-player banner collapses to 0 height without vertical gaps.
+────────────────────────────────────────────────────────────────────────── */
+ins.adsbygoogle[data-ad-status="unfilled"],
+.ad-unit:has(ins.adsbygoogle[data-ad-status="unfilled"]),
+.ad-unit[data-unfilled="true"],
+.ad-skyscraper:empty,
+.ad-below-player:empty,
+div:has(> .ad-unit[style*="display: none"]),
+div:has(> ins.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none !important;
 }
