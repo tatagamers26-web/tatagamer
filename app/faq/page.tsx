@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PokiFooter } from "../footer";
 import { Icon } from "../ui-icon";
@@ -218,9 +219,17 @@ export default function FAQPage() {
           <div className="flex h-[var(--cell)] w-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] bg-white shadow-[0_6px_10px_rgba(6,55,59,0.18)]">
             <Link
               href="/"
-              className="text-[13px] font-black leading-none tracking-tight text-teal-600"
+              className="group flex flex-col items-center justify-center"
+              aria-label={SITE_NAME}
             >
-              Tata<span className="text-orange-500">Gamer</span>
+              <Image
+                src="/logo.png"
+                alt={SITE_NAME}
+                width={52}
+                height={52}
+                className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                priority
+              />
             </Link>
             <Link
               href="/"

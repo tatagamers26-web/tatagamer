@@ -107,9 +107,17 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           >
             <Link
               href="/"
-              className="text-[13px] font-black leading-none tracking-tight text-teal-600"
+              className="group flex flex-col items-center justify-center"
+              aria-label={SITE_NAME}
             >
-              Tata<span className="text-orange-500">Gamer</span>
+              <Image
+                src="/logo.png"
+                alt={SITE_NAME}
+                width={52}
+                height={52}
+                className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                priority
+              />
             </Link>
             <div className="flex gap-1.5">
               <Link

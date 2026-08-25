@@ -107,7 +107,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     "@type": "Organization",
     name: SITE_NAME,
     url: siteUrl(),
-    logo: `${siteUrl()}/og-default.png`,
+    logo: `${siteUrl()}/logo.png`,
     sameAs: [
       "https://www.tiktok.com/@tatagamer",
       "https://www.instagram.com/tatagamer",

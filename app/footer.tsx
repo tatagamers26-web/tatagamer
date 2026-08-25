@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "./ui-icon";
 import { SITE_NAME } from "./seo";
@@ -57,10 +58,15 @@ export function PokiFooter({ totalGames }: { totalGames?: number }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 font-bold">
           {/* Column 1: Brand & Socials */}
           <div className="flex flex-col gap-4">
-            <Link href="/" className="group inline-flex items-center">
-              <span className="text-3xl sm:text-4xl font-black tracking-tight text-[#06373b] group-hover:text-teal-600 transition-colors">
-                Tata<span className="text-orange-500">Gamer</span>
-              </span>
+            <Link href="/" className="group inline-block" aria-label={SITE_NAME}>
+              <Image
+                src="/logo.png"
+                alt={SITE_NAME}
+                width={180}
+                height={180}
+                className="h-16 sm:h-20 w-auto object-contain transition-transform group-hover:scale-105"
+                priority
+              />
             </Link>
             <p className="text-base font-medium text-slate-500 leading-relaxed">
               Your premier instant browser gaming destination. Enjoy hundreds of top-rated free games across all genres with no installations required.
