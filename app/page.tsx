@@ -166,13 +166,13 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           {/* Editorial content. Original copy — required for AdSense approval. */}
           <article className="w-full rounded-[24px] bg-white p-5 sm:p-8 shadow-sm">
             <h1 className="text-2xl font-bold text-teal-950">
-              {SITE_NAME} &mdash; play {games.length.toLocaleString()} free games in your browser
+              {SITE_NAME}: Play {games.length.toLocaleString()} Free Games in Your Browser
             </h1>
 
             <div className="mt-4 space-y-4 text-base leading-relaxed text-zinc-600">
               <p>
                 Every game here runs straight in your browser. Nothing to download, nothing to
-                install, no account to create &mdash; pick a game, wait a second or two, and play.
+                install, no account to create. Just pick a game, wait a second or two, and play.
                 It works the same on a phone, a tablet, a school laptop or a desktop.
               </p>
 
@@ -181,7 +181,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
                 The homepage reshuffles its featured games on every visit, so the big tiles are
                 never quite the same twice. Below them sits the rest of the catalogue in popularity
                 order, newest and most-played first. Use the category boxes to narrow things down,
-                or the search box if you already know what you want &mdash; it matches both game
+                or the search box if you already know what you want. It matches both game
                 titles and tags, so searching &ldquo;zombie&rdquo; finds games that never mention it
                 in the title.
               </p>
@@ -189,27 +189,27 @@ export default async function Home({ searchParams }: PageProps<"/">) {
               <h2 className="pt-3 text-lg font-bold text-teal-950">What you&apos;ll find here</h2>
               <ul className="space-y-2 pl-5">
                 <li className="list-disc">
-                  <strong className="text-teal-950">Racing and driving</strong> &mdash; street
+                  <strong className="text-teal-950">Racing and driving:</strong> street
                   circuits, stunt ramps, parking challenges and truck simulators.
                 </li>
                 <li className="list-disc">
-                  <strong className="text-teal-950">Puzzles</strong> &mdash; match-3, jigsaws, block
+                  <strong className="text-teal-950">Puzzles:</strong> match-3, jigsaws, block
                   stacking and logic games for when you want to slow down and think.
                 </li>
                 <li className="list-disc">
-                  <strong className="text-teal-950">Action and shooting</strong> &mdash; platformers,
+                  <strong className="text-teal-950">Action and shooting:</strong> platformers,
                   survival runs, target practice and boss fights.
                 </li>
                 <li className="list-disc">
-                  <strong className="text-teal-950">2 Player</strong> &mdash; split-keyboard games
+                  <strong className="text-teal-950">2 Player:</strong> split-keyboard games
                   you can play with someone next to you, no second device needed.
                 </li>
                 <li className="list-disc">
-                  <strong className="text-teal-950">.IO and multiplayer</strong> &mdash; grow,
+                  <strong className="text-teal-950">.IO and multiplayer:</strong> grow,
                   outlast and outmanoeuvre other players in real time.
                 </li>
                 <li className="list-disc">
-                  <strong className="text-teal-950">Hypercasual</strong> &mdash; one-button games
+                  <strong className="text-teal-950">Hypercasual:</strong> one-button games
                   that take five seconds to learn and a while to put down.
                 </li>
               </ul>
@@ -218,7 +218,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
               <p>
                 Most of the catalogue is built for touch, so tapping and swiping is all you need.
                 Games that expect arrow keys or WASD will say so in their instructions on the play
-                page &mdash; those are worth saving for a laptop. Turning your phone sideways helps
+                page, so those are worth saving for a laptop. Turning your phone sideways helps
                 on anything that scrolls horizontally, and every game runs full-screen if you want
                 the controls out of the way.
               </p>
@@ -234,8 +234,8 @@ export default async function Home({ searchParams }: PageProps<"/">) {
               </p>
               <p>
                 <strong className="text-teal-950">Will it work on my phone?</strong> Most games
-                support touch controls. A few are built for a keyboard and play better on a computer
-                &mdash; those usually say so in their instructions.
+                support touch controls. A few are built for a keyboard and play better on a computer;
+                those usually say so in their instructions.
               </p>
               <p>
                 <strong className="text-teal-950">A game won&apos;t load. What now?</strong> Refresh
@@ -244,7 +244,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
               </p>
               <p>
                 <strong className="text-teal-950">Can&apos;t find a game?</strong> Try searching a
-                single word from the title, or browse the category boxes above &mdash; the catalogue
+                single word from the title, or browse the category boxes above. The catalogue
                 is large and titles vary.
               </p>
               <p>

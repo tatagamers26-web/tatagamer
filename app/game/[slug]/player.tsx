@@ -34,8 +34,25 @@ export function Player({
 }) {
   const [playing, setPlaying] = useState(false);
   const [mobileFullscreen, setMobileFullscreen] = useState(false);
+  const [nativeFullscreen, setNativeFullscreen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const frameRef = useRef<HTMLDivElement>(null);
+
+  /* ── Sync nativeFullscreen with actual browser fullscreen state ─────────── */
+  useEffect(() => {
+    const onFsChange = () => {
+      const isFs =
+        !!document.fullscreenElement ||
+        !!(document as unknown as { webkitFullscreenElement?: Element }).webkitFullscreenElement;
+      setNativeFullscreen(isFs);
+    };
+    document.addEventListener("fullscreenchange", onFsChange);
+    document.addEventListener("webkitfullscreenchange", onFsChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", onFsChange);
+      document.removeEventListener("webkitfullscreenchange", onFsChange);
+    };
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -88,14 +105,18 @@ export function Player({
 
   /* ── Expand / Fullscreen button ─────────────────────────────────────────
      Mobile  → open the fixed-portal overlay.
-     Desktop → request native browser fullscreen on the inline player div.  */
+     Desktop → toggle native browser fullscreen on the inline player div.   */
   const handleExpand = async () => {
     if (isMobile()) {
       setMobileFullscreen(true);
     } else {
-      // Try native fullscreen on the inline player container
       const el = frameRef.current;
-      if (el) await enterNativeFullscreen(el);
+      if (!el) return;
+      if (nativeFullscreen) {
+        await exitNativeFullscreen();
+      } else {
+        await enterNativeFullscreen(el);
+      }
     }
   };
 
@@ -236,14 +257,14 @@ export function Player({
           <p className="truncate text-sm font-bold text-teal-950">{title}</p>
           <p className="truncate text-xs text-zinc-500">{category}</p>
         </div>
-        {/* Expand: on mobile opens portal, on desktop requests native fullscreen */}
+        {/* Expand/Compress: toggles native fullscreen on desktop, opens portal on mobile */}
         <button
           type="button"
           onClick={playing ? handleExpand : handlePlay}
-          aria-label={playing ? "Fullscreen" : `Play ${title}`}
+          aria-label={nativeFullscreen ? "Exit fullscreen" : playing ? "Fullscreen" : `Play ${title}`}
           className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-zinc-100 text-teal-700 transition hover:bg-teal-100 active:scale-95"
         >
-          <Icon name="expand" className="h-5 w-5" />
+          <Icon name={nativeFullscreen ? "compress" : "expand"} className="h-5 w-5" />
         </button>
       </div>
 

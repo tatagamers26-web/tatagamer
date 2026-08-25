@@ -249,7 +249,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
 
               <h2 className="pt-2 text-lg font-bold text-teal-950">Features of {game.title}</h2>
               <ul className="space-y-2 pl-5">
-                <li className="list-disc">Plays instantly in the browser &mdash; no download, no install, no account.</li>
+                <li className="list-disc">Plays instantly in the browser. No download, no install, no account needed.</li>
                 <li className="list-disc">Free to play, with no time limit and no locked levels.</li>
                 <li className="list-disc">
                   A {game.category.toLowerCase()} game, so it sits alongside{" "}
@@ -264,7 +264,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
 
               <h2 className="pt-2 text-lg font-bold text-teal-950">Playing {game.title} on {SITE_NAME}</h2>
               <p>
-                {game.title} runs directly in your browser &mdash; there is nothing to download and no account to create. Press play above and the game loads in place. Prefer something similar? Every game in the{" "}
+                {game.title} runs directly in your browser. There is nothing to download and no account to create. Press play above and the game loads in place. Prefer something similar? Every game in the{" "}
                 <Link href={`/?cat=${encodeURIComponent(game.category)}`} className="font-semibold text-teal-700 hover:underline">
                   {game.category} category
                 </Link>{" "}
