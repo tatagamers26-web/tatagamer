@@ -37,7 +37,7 @@ export async function generateMetadata({
   const url = `/game/${game.slug}`;
 
   return {
-    title: `${game.title} — Play Free Online`,
+    title: `${game.title} | Play Free Online`,
     description,
     keywords: [game.title, game.category, ...game.tags.split(",").map((t) => t.trim())]
       .filter(Boolean)
@@ -46,14 +46,14 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       url,
-      title: `${game.title} — Play Free Online | ${SITE_NAME}`,
+      title: `${game.title} | Play Free Online | ${SITE_NAME}`,
       description,
       siteName: SITE_NAME,
       images: [{ url: game.thumb, width: 512, height: 384, alt: game.title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${game.title} — Play Free Online`,
+      title: `${game.title} | Play Free Online`,
       description,
       images: [game.thumb],
     },

@@ -28,11 +28,11 @@ const OG_IMAGE = "/og-default.png";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
   title: {
-    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    default: `${SITE_NAME} | ${SITE_TAGLINE}`,
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Thousands of free browser games you can play instantly — racing, puzzles, action, .io and two-player. No downloads, no installs, no account needed.",
+    "Thousands of free browser games you can play instantly. Racing, puzzles, action, .io and two-player. No downloads, no installs, no account needed.",
   applicationName: SITE_NAME,
   keywords: [
     "free browser games",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description:
       "Thousands of free browser games you can play instantly. No downloads, no installs, no account needed.",
     url: "/",
@@ -63,13 +63,13 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} — Play Free Browser Games`,
+        alt: `${SITE_NAME} | Play Free Browser Games`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description: "Thousands of free browser games you can play instantly.",
     images: [OG_IMAGE],
   },

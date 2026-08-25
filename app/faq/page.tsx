@@ -9,7 +9,7 @@ import { FAQClient } from "./faq-client";
 const OG_IMAGE = "/og-default.png";
 
 export const metadata: Metadata = {
-  title: `Frequently Asked Questions — ${SITE_NAME}`,
+  title: `Frequently Asked Questions | ${SITE_NAME}`,
   description:
     "Find clear answers to common questions about playing free browser games on TataGamer, device support, safety, privacy, ad-free options, and game publishing.",
   alternates: { canonical: "/faq" },
