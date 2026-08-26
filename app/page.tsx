@@ -5,6 +5,7 @@ import { SearchDialog } from "./search-dialog";
 import { Icon } from "./ui-icon";
 import { CAT_ICON, SITE_NAME } from "./seo";
 import { PokiFooter } from "./footer";
+import { categorySlug } from "./category/[slug]/page";
 
 const PER_PAGE = 60;
 // Poki-style bento: fixed 100px cells, dense flow, tiles span 1-3 cells.
@@ -139,7 +140,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
         {categories.map((c) => {
           const active = c === cat;
           return (
-            <Link key={c} href={href("", active ? "" : c, 1)} className="group">
+            <Link key={c} href={active ? "/" : `/category/${categorySlug(c)}`} className="group">
               <span
                 className={`flex h-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] px-1 text-center shadow-[0_6px_10px_rgba(6,55,59,0.18)] transition duration-200 group-hover:-translate-y-1 group-hover:shadow-[0_10px_16px_rgba(6,55,59,0.24)] ${
                   active ? "bg-teal-500" : "bg-white"
@@ -264,7 +265,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
                 All Games
               </Link>
               {categories.map((c) => (
-                <Link key={c} href={href("", c, 1)} className="text-teal-700 hover:underline">
+                <Link key={c} href={`/category/${categorySlug(c)}`} className="text-teal-700 hover:underline">
                   {c} Games
                 </Link>
               ))}

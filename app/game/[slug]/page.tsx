@@ -10,6 +10,7 @@ import { Player } from "./player";
 import { PokiFooter } from "../../footer";
 import { SearchDialog } from "../../search-dialog";
 import { AdUnit, AdLeaderboard } from "../../ad-unit";
+import { categorySlug } from "../../category/[slug]/page";
 
 const SIDEBAR = 17;
 const MORE = 24;
@@ -99,8 +100,8 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
       {
         "@type": "ListItem",
         position: 2,
-        name: game.category,
-        item: `${siteUrl()}/?cat=${encodeURIComponent(game.category)}`,
+        name: `${game.category} Games`,
+        item: `${siteUrl()}/category/${categorySlug(game.category)}`,
       },
       { "@type": "ListItem", position: 3, name: game.title },
     ],
@@ -197,7 +198,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
 
         {/* ── Category pills ─────────────────────────────────────────────── */}
         {categories.map((c) => (
-          <Link key={c} href={`/?cat=${encodeURIComponent(c)}`} className="group">
+          <Link key={c} href={`/category/${categorySlug(c)}`} className="group">
             <span
               className={`flex h-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] px-1 text-center shadow-[0_6px_10px_rgba(6,55,59,0.18)] transition duration-200 group-hover:-translate-y-1 group-hover:shadow-[0_10px_16px_rgba(6,55,59,0.24)] ${
                 c === game.category ? "bg-teal-500" : "bg-white"
@@ -217,7 +218,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
             <nav aria-label="Breadcrumb" className="mb-3 flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-teal-600">
               <Link href="/" className="hover:underline">{SITE_NAME}</Link>
               <span aria-hidden="true">›</span>
-              <Link href={`/?cat=${encodeURIComponent(game.category)}`} className="hover:underline">{game.category}</Link>
+              <Link href={`/category/${categorySlug(game.category)}`} className="hover:underline">{game.category}</Link>
             </nav>
 
             <h1 className="text-2xl font-bold text-teal-950">
@@ -253,7 +254,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
                 <li className="list-disc">Free to play, with no time limit and no locked levels.</li>
                 <li className="list-disc">
                   A {game.category.toLowerCase()} game, so it sits alongside{" "}
-                  <Link href={`/?cat=${encodeURIComponent(game.category)}`} className="font-semibold text-teal-700 hover:underline">
+                  <Link href={`/category/${categorySlug(game.category)}`} className="font-semibold text-teal-700 hover:underline">
                     every other {game.category} title
                   </Link>{" "}
                   on {SITE_NAME}.
@@ -265,7 +266,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
               <h2 className="pt-2 text-lg font-bold text-teal-950">Playing {game.title} on {SITE_NAME}</h2>
               <p>
                 {game.title} runs directly in your browser. There is nothing to download and no account to create. Press play above and the game loads in place. Prefer something similar? Every game in the{" "}
-                <Link href={`/?cat=${encodeURIComponent(game.category)}`} className="font-semibold text-teal-700 hover:underline">
+                <Link href={`/category/${categorySlug(game.category)}`} className="font-semibold text-teal-700 hover:underline">
                   {game.category} category
                 </Link>{" "}
                 is one click away, and the thumbnails around the player are all from that same category.
@@ -283,7 +284,7 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
             <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
               <Link href="/" className="font-semibold text-teal-700 hover:underline">All Games</Link>
               {categories.map((c) => (
-                <Link key={c} href={`/?cat=${encodeURIComponent(c)}`} className="text-teal-700 hover:underline">
+                <Link key={c} href={`/category/${categorySlug(c)}`} className="text-teal-700 hover:underline">
                   {c} Games
                 </Link>
               ))}

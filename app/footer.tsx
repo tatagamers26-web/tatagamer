@@ -111,37 +111,37 @@ export function PokiFooter({ totalGames }: { totalGames?: number }) {
             </h3>
             <ul className="flex flex-col gap-2.5 text-base font-semibold text-[#06373b]">
               <li>
-                <Link href="/?cat=Racing" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
+                <Link href="/category/racing" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
                   <span className="w-2 h-2 rounded-full bg-orange-400"></span>
                   Car Games
                 </Link>
               </li>
               <li>
-                <Link href="/?cat=.IO" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
+                <Link href="/category/io" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
                   <span className="w-2 h-2 rounded-full bg-teal-400"></span>
                   .IO Games
                 </Link>
               </li>
               <li>
-                <Link href="/?cat=2%20Player" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
+                <Link href="/category/2-player" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
                   <span className="w-2 h-2 rounded-full bg-sky-400"></span>
                   2 Player Games
                 </Link>
               </li>
               <li>
-                <Link href="/?cat=Puzzles" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
+                <Link href="/category/puzzles" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
                   <span className="w-2 h-2 rounded-full bg-amber-400"></span>
                   Puzzle Games
                 </Link>
               </li>
               <li>
-                <Link href="/?cat=Girls" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
+                <Link href="/category/girls" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
                   <span className="w-2 h-2 rounded-full bg-pink-400"></span>
                   Dress Up Games
                 </Link>
               </li>
               <li>
-                <Link href="/?cat=Shooting" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
+                <Link href="/category/shooting" className="hover:text-[#009cff] transition-colors flex items-center gap-2.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
                   Shooting Games
                 </Link>

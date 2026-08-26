@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { getCategories, getGames } from "@/lib/games";
 import { siteUrl } from "./seo";
+import { categorySlug } from "./category/[slug]/page";
 
 export const revalidate = 3600;
 
@@ -15,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/contact`, changeFrequency: "monthly" as const, priority: 0.6 },
     { url: `${base}/privacy`, changeFrequency: "monthly" as const, priority: 0.5 },
     ...categories.map((c) => ({
-      url: `${base}/?cat=${encodeURIComponent(c)}`,
+      url: `${base}/category/${categorySlug(c)}`,
       changeFrequency: "weekly" as const,
       priority: 0.7,
     })),
@@ -26,3 +27,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 }
+

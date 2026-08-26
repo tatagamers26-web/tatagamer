@@ -21,7 +21,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         // Filtered and paginated views are the same games in a different order —
         // keep crawl budget on the game pages themselves.
-        disallow: ["/api/", "/*?q=", "/*?page=", "/*?cat=*&page="],
+        disallow: ["/api/", "/*?q=", "/*?page=", "/*?cat=", "/*?cat=*&page="],
       },
     ],
     sitemap: `${siteUrl()}/sitemap.xml`,
