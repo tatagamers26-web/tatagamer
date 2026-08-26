@@ -1,5 +1,5 @@
 export const SITE_NAME = "TataGamer";
-export const SITE_TAGLINE = "Play free games in your browser";
+export const SITE_TAGLINE = "Free online games on tata games-play now!";
 
 /**
  * Absolute site origin, used for canonical URLs, sitemap and structured data.

@@ -166,7 +166,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           {/* Editorial content. Original copy — required for AdSense approval. */}
           <article className="w-full rounded-[24px] bg-white p-5 sm:p-8 shadow-sm">
             <h1 className="text-2xl font-bold text-teal-950">
-              {SITE_NAME}: Play {games.length.toLocaleString()} Free Games in Your Browser
+              Free Online Games on {SITE_NAME} - Play Now!
             </h1>
 
             <div className="mt-4 space-y-4 text-base leading-relaxed text-zinc-600">

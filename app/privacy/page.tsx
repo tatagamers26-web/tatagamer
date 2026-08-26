@@ -9,12 +9,12 @@ import { PrivacyClient } from "./privacy-client";
 const OG_IMAGE = "/og-default.png";
 
 export const metadata: Metadata = {
-  title: `Privacy Center & Policy — ${SITE_NAME}`,
+  title: `Privacy Center & Policy - ${SITE_NAME}`,
   description:
     "Learn about how TataGamer protects your privacy, uses cookies, complies with COPPA, GDPR, and CCPA, and manages non-personal technical telemetry.",
   alternates: { canonical: "/privacy" },
   openGraph: {
-    title: `Privacy Center & Policy — ${SITE_NAME}`,
+    title: `Privacy Center & Policy - ${SITE_NAME}`,
     description:
       "Learn about how TataGamer protects your privacy, uses cookies, complies with COPPA, GDPR, and CCPA.",
     url: "/privacy",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Privacy Center & Policy — ${SITE_NAME}`,
+    title: `Privacy Center & Policy - ${SITE_NAME}`,
     description: "Your privacy is important to us. Learn how TataGamer keeps your data safe.",
     images: [OG_IMAGE],
   },

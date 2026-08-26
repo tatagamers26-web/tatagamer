@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Find clear answers to common questions about playing free browser games on TataGamer, device support, safety, privacy, ad-free options, and game publishing.",
   alternates: { canonical: "/faq" },
   openGraph: {
-    title: `Frequently Asked Questions — ${SITE_NAME}`,
+    title: `Frequently Asked Questions - ${SITE_NAME}`,
     description:
       "Find clear answers to common questions about playing free browser games on TataGamer, device support, safety, privacy, ad-free options, and game publishing.",
     url: "/faq",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Frequently Asked Questions — ${SITE_NAME}`,
+    title: `Frequently Asked Questions - ${SITE_NAME}`,
     description: "Get answers to all your questions about playing games on TataGamer.",
     images: [OG_IMAGE],
   },
@@ -175,7 +175,7 @@ export const FAQ_DATA = [
     icon: "briefcase",
     questions: [
       {
-        q: "I am a game developer — how can I publish my game on TataGamer?",
+        q: "I am a game developer - how can I publish my game on TataGamer?",
         a: "We love partnering with talented HTML5 game creators and studios! You can submit your game portfolio or HTML5 build to our developer partnership portal for review and monetization opportunities.",
       },
       {
