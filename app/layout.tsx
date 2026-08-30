@@ -133,8 +133,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteLd, orgLd]) }}
         />
         {/* Google AdSense */}
-          {/*<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5036627158328757"
-     crossorigin="anonymous"></script>*/}
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5036627158328757"
+     crossorigin="anonymous"></script>
         
         {/* Google Tag Manager */}
         <Script
