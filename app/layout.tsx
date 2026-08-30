@@ -133,8 +133,28 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteLd, orgLd]) }}
         />
         {/* Google AdSense */}
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5036627158328757"
-     crossorigin="anonymous"></script>
+         export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <head>
+    
+        <Script
+          async
+         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5036627158328757"
+     crossorigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
+
+      <body>{children}</body>
+    </html>
+  );
+}
+    
         
         {/* Google Tag Manager */}
         <Script
