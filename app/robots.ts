@@ -23,6 +23,10 @@ export default function robots(): MetadataRoute.Robots {
         // keep crawl budget on the game pages themselves.
         disallow: ["/api/", "/*?q=", "/*?page=", "/*?cat=", "/*?cat=*&page="],
       },
+      {
+        userAgent: "Mediapartners-Google",
+        allow: "/",
+      },
     ],
     sitemap: `${siteUrl()}/sitemap.xml`,
     host: siteUrl(),
