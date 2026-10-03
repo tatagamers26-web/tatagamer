@@ -132,14 +132,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteLd, orgLd]) }}
         />
-        {/* Google AdSense */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5036627158328757"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-        {/* Google Tag Manager */}
+   {/* Google Tag Manager */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
