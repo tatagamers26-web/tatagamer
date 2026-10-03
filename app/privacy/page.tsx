@@ -33,15 +33,37 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="mx-auto w-full max-w-[1854px] px-2.5">
-      {/* Navigation Breadcrumb */}
-      <div className="py-2.5 flex items-center justify-between mb-4">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 rounded-xl bg-white/90 px-3.5 py-2 text-xs sm:text-sm font-bold text-[#06373b] shadow-xs hover:bg-white hover:text-teal-700 transition"
-        >
-          <Icon name="chevronLeft" className="h-4 w-4" />
-          <span>Back to Games</span>
-        </Link>
+      {/* Header Bar */}
+      <header className="py-4 flex items-center justify-between mb-4">
+        {/* Brand Tile & Title */}
+        <div className="flex items-center gap-4">
+          <div className="flex h-[var(--cell)] w-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] bg-white shadow-[0_6px_10px_rgba(6,55,59,0.18)]">
+            <Link
+              href="/"
+              className="group flex flex-col items-center justify-center"
+              aria-label={SITE_NAME}
+            >
+              <Image
+                src="/logo.png"
+                alt={SITE_NAME}
+                width={52}
+                height={52}
+                className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                priority
+              />
+            </Link>
+            <Link
+              href="/"
+              aria-label="Home"
+              className="grid h-7 w-7 place-items-center rounded-lg bg-zinc-100 text-teal-700 transition hover:bg-teal-100"
+            >
+              <Icon name="home" className="h-4 w-4" />
+            </Link>
+          </div>
+          <span className="text-lg font-black text-[#06373b] tracking-tight">
+            Privacy Center
+          </span>
+        </div>
 
         {/* Top Right Exit Link */}
         <Link
@@ -51,7 +73,7 @@ export default function PrivacyPage() {
           <span>Exit</span>
           <span aria-hidden="true">&rarr;</span>
         </Link>
-      </div>
+      </header>
 
       {/* Main Content Area */}
       <main className="py-6 sm:py-10">

@@ -91,6 +91,9 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
   const categoryGames = games.filter((g) => g.category === category);
   const count = categoryGames.length;
 
+  const searchPopular = games
+    .slice(0, 12)
+    .map((g) => ({ id: g.id, slug: g.slug, title: g.title, thumb: g.thumb }));
 
   /* JSON-LD: BreadcrumbList + ItemList */
   const breadcrumbLd = {
@@ -129,6 +132,28 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
       <main>
         {/* ── Top bar ─────────────────────────────────────────────── */}
         <div className="poki-grid">
+          {/* Brand card */}
+          <div className="relative">
+            <div className="fixed top-[var(--grid-gap)] z-30 flex h-[var(--cell)] w-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] bg-white shadow-[0_6px_10px_rgba(6,55,59,0.18)]">
+              <Link href="/" className="group flex flex-col items-center justify-center" aria-label={SITE_NAME}>
+                <Image
+                  src="/logo.png"
+                  alt={SITE_NAME}
+                  width={52}
+                  height={52}
+                  className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                  priority
+                />
+              </Link>
+              <div className="flex gap-1.5">
+                <Link href="/" aria-label="Home" className="grid h-7 w-7 place-items-center rounded-lg bg-zinc-100 text-teal-700 transition hover:bg-teal-100">
+                  <Icon name="home" className="h-4 w-4" />
+                </Link>
+                <SearchDialog popular={searchPopular} />
+              </div>
+            </div>
+          </div>
+
           {/* Category pills */}
           {categories.map((c) => {
             const active = c === category;
@@ -174,35 +199,26 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
               </p>
             </div>
 
-            {/* Game grid in glass container */}
-            <div className="rounded-[28px] sm:rounded-[36px] bg-white/30 backdrop-blur-xl border border-white/50 p-2.5 sm:p-5 shadow-[0_8px_32px_rgba(6,55,59,0.06)]">
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-[var(--grid-gap)]">
-                {categoryGames.map((g) => (
-                  <Link
-                    key={g.id}
-                    href={`/game/${g.slug}`}
-                    className="group relative aspect-square overflow-hidden rounded-[20px] bg-white/50 shadow-xs transition-all duration-300 ease-out hover:z-20 hover:-translate-y-1 hover:scale-[1.04] hover:shadow-[0_12px_24px_rgba(6,55,59,0.22)] ring-2 ring-white/60 hover:ring-white"
-                  >
-                    <Image
-                      src={g.thumb}
-                      alt={g.title}
-                      fill
-                      sizes="120px"
-                      className="object-cover transition duration-300 ease-out group-hover:scale-108"
-                    />
-                    {/* Hover Centered Play Button */}
-                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                      <div className="grid h-9 w-9 place-items-center rounded-full bg-white/95 text-teal-700 shadow-xl opacity-0 scale-75 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100">
-                        <Icon name="play" className="h-4 w-4 ml-0.5 fill-current" />
-                      </div>
-                    </div>
-                    {/* Bottom Title Overlay */}
-                    <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end bg-gradient-to-t from-black/85 via-black/40 to-transparent p-1.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                      <span className="text-[10px] font-bold leading-tight text-white line-clamp-2 truncate">{g.title}</span>
-                    </span>
-                  </Link>
-                ))}
-              </div>
+            {/* Game grid */}
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-[var(--grid-gap)]">
+              {categoryGames.map((g) => (
+                <Link
+                  key={g.id}
+                  href={`/game/${g.slug}`}
+                  className="group relative aspect-square overflow-hidden rounded-2xl bg-white/40 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <Image
+                    src={g.thumb}
+                    alt={g.title}
+                    fill
+                    sizes="120px"
+                    className="object-cover transition duration-300 group-hover:scale-110"
+                  />
+                  <span className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-1.5 opacity-0 transition group-hover:opacity-100">
+                    <span className="text-[10px] font-bold leading-tight text-white line-clamp-2">{g.title}</span>
+                  </span>
+                </Link>
+              ))}
             </div>
 
             {/* Ad leaderboard */}

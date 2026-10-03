@@ -15,47 +15,13 @@ const DEBOUNCE_MS = 180;
  * background come from the platform. Results are fetched live from /api/search as
  * the user types, so the ~5000-game catalogue never ships to the browser.
  */
-interface SearchDialogProps {
-  popular?: SearchGame[];
-  variant?: "icon" | "bar";
-  className?: string;
-}
-
-export function SearchDialog({ popular, variant = "icon", className = "" }: SearchDialogProps) {
+export function SearchDialog({ popular }: { popular: SearchGame[] }) {
   const ref = useRef<HTMLDialogElement>(null);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchGame[]>([]);
   const [loading, setLoading] = useState(false);
-  const [popularGames, setPopularGames] = useState<SearchGame[]>(popular ?? []);
 
   const term = query.trim();
-
-  useEffect(() => {
-    if (popular && popular.length > 0) {
-      setPopularGames(popular);
-      return;
-    }
-    fetch("/api/search")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) setPopularGames(data);
-      })
-      .catch(() => {});
-  }, [popular]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (
-        (e.key === "k" && (e.metaKey || e.ctrlKey)) ||
-        (e.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName ?? ""))
-      ) {
-        e.preventDefault();
-        ref.current?.showModal();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   useEffect(() => {
     if (!term) {
@@ -84,7 +50,7 @@ export function SearchDialog({ popular, variant = "icon", className = "" }: Sear
     };
   }, [term]);
 
-  const showing = term ? results : popularGames;
+  const showing = term ? results : popular;
   const heading = !term
     ? "Popular games"
     : loading
@@ -95,31 +61,14 @@ export function SearchDialog({ popular, variant = "icon", className = "" }: Sear
 
   return (
     <>
-      {variant === "bar" ? (
-        <button
-          type="button"
-          aria-label="Search games"
-          onClick={() => ref.current?.showModal()}
-          className={`group flex h-10 w-full items-center gap-2.5 rounded-full border border-teal-200/70 bg-teal-50/70 px-3.5 sm:px-4 text-zinc-500 shadow-inner transition-all hover:border-teal-300 hover:bg-white hover:text-zinc-800 hover:shadow-xs cursor-pointer ${className}`}
-        >
-          <Icon name="search" className="h-4 w-4 shrink-0 text-teal-600 transition-transform group-hover:scale-110" />
-          <span className="flex-1 truncate text-left text-xs sm:text-sm font-medium">
-            Search 10,000+ free online games...
-          </span>
-          <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded-md border border-zinc-200 bg-white px-2 py-0.5 text-[10px] font-bold text-zinc-400 shadow-xs">
-            ⌘K
-          </kbd>
-        </button>
-      ) : (
-        <button
-          type="button"
-          aria-label="Search games"
-          onClick={() => ref.current?.showModal()}
-          className={`grid h-7 w-7 cursor-pointer place-items-center rounded-lg bg-zinc-100 text-teal-700 transition hover:bg-teal-100 ${className}`}
-        >
-          <Icon name="search" className="h-4 w-4" />
-        </button>
-      )}
+      <button
+        type="button"
+        aria-label="Search games"
+        onClick={() => ref.current?.showModal()}
+        className="grid h-7 w-7 cursor-pointer place-items-center rounded-lg bg-zinc-100 text-teal-700 transition hover:bg-teal-100"
+      >
+        <Icon name="search" className="h-4 w-4" />
+      </button>
 
       <dialog
         ref={ref}

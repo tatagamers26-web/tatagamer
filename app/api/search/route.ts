@@ -4,14 +4,9 @@ const LIMIT = 24;
 
 export async function GET(request: Request) {
   const q = new URL(request.url).searchParams.get("q")?.trim() ?? "";
-  const games = await getGames();
-  if (!q) {
-    return Response.json(
-      games.slice(0, 12).map((g) => ({ id: g.id, slug: g.slug, title: g.title, thumb: g.thumb }))
-    );
-  }
+  if (!q) return Response.json([]);
 
-  const hits = searchGames(games, q)
+  const hits = searchGames(await getGames(), q)
     .slice(0, LIMIT)
     .map((g) => ({ id: g.id, slug: g.slug, title: g.title, thumb: g.thumb }));
 

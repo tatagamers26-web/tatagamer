@@ -8,8 +8,8 @@ import { PokiFooter } from "./footer";
 import { categorySlug } from "./category/[slug]/page";
 
 const PER_PAGE = 60;
-// Harmonious 2x2 featured tiles and 1x1 standard tiles that pack flush without gaps
-const SPANS = [2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1];
+// Poki-style bento: fixed 100px cells, dense flow, tiles span 1-3 cells.
+const SPANS = [3, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 3, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1];
 const FEATURED_POOL = 60;
 const CELL = 100;
 const GAP = 17;
@@ -36,53 +36,24 @@ function pickRandom<T>(items: T[], n: number): T[] {
 }
 
 function Tile({ game, span }: { game: Game; span: number }) {
-  const isFeatured = span >= 2;
-
   return (
     <Link
       href={`/game/${game.slug}`}
       style={{ gridColumn: `span ${span}`, gridRow: `span ${span}` }}
-      className="group relative overflow-hidden rounded-[20px] sm:rounded-[24px] bg-white/50 shadow-xs transition-all duration-300 ease-out hover:z-20 hover:-translate-y-1 hover:scale-[1.03] hover:shadow-[0_12px_24px_rgba(6,55,59,0.22)] ring-2 ring-white/60 hover:ring-white"
+      className="group relative overflow-hidden rounded-2xl bg-white/40 shadow-sm transition duration-200 hover:z-10 hover:-translate-y-1 hover:shadow-xl"
     >
-      {/* Featured Badges */}
-      {isFeatured && (
-        <div className="absolute top-2 left-2 z-10 flex items-center gap-1 rounded-lg bg-black/60 backdrop-blur-md px-2 py-0.5 text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white border border-white/20 shadow-xs">
-          <Icon name="sparkle" className="h-3 w-3 text-amber-400" />
-          <span>Hot</span>
-        </div>
-      )}
-
-      {/* Game Thumbnail */}
       <Image
         src={game.thumb}
         alt={game.title}
         fill
         sizes={`${span * (CELL + GAP)}px`}
-        className="object-cover transition duration-300 ease-out group-hover:scale-108"
+        className="object-cover transition duration-300 group-hover:scale-110"
       />
-
-      {/* Hover Centered Play Button */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="grid h-9 w-9 sm:h-11 sm:w-11 place-items-center rounded-full bg-white/95 text-teal-700 shadow-xl opacity-0 scale-75 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100">
-          <Icon name="play" className="h-4 w-4 sm:h-5 sm:w-5 ml-0.5 fill-current" />
-        </div>
-      </div>
-
-      {/* Bottom Title & Category Overlay */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/40 to-transparent p-2 sm:p-2.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-        <span
-          className={`font-black leading-tight text-white drop-shadow-md truncate ${
-            isFeatured ? "text-xs sm:text-sm" : "text-[10px] sm:text-[11px]"
-          }`}
-        >
+      <span className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-2 opacity-0 transition group-hover:opacity-100">
+        <span className={`font-bold leading-tight text-white ${span > 1 ? "text-sm" : "text-[10px]"}`}>
           {game.title}
         </span>
-        {isFeatured && (
-          <span className="text-[9px] font-bold text-teal-300 uppercase tracking-wider">
-            {game.category}
-          </span>
-        )}
-      </div>
+      </span>
     </Link>
   );
 }
@@ -120,44 +91,79 @@ export default async function Home({ searchParams }: PageProps<"/">) {
     tiles.push({ game, span: big.length || small.length ? span : 1 });
   }
 
+  const searchPopular = games
+    .slice(0, 12)
+    .map((g) => ({ id: g.id, slug: g.slug, title: g.title, thumb: g.thumb }));
+
+
   return (
     <div className="mx-auto w-full max-w-[1854px] px-2.5">
-      {/* ── Modern Gaming Bento Grid Surface ──────────────────────── */}
-      <section className="rounded-[28px] sm:rounded-[36px] bg-white/30 backdrop-blur-xl border border-white/50 p-2.5 sm:p-5 shadow-[0_8px_32px_rgba(6,55,59,0.06)] my-2 sm:my-3">
-        <div className="poki-grid my-0">
-          {tiles.map(({ game, span }) => (
-            <Tile key={game.id} game={game} span={span} />
-          ))}
+      <main className="poki-grid">
+        {/* Brand card. Occupies one 100px cell, but the visible card is fixed so it
+            stays pinned while the grid scrolls. Omitting `left` makes the fixed box
+            resolve to its static position, i.e. exactly over this placeholder cell. */}
+        <div className="relative">
+          <div
+            className="fixed top-[var(--grid-gap)] z-30 flex h-[var(--cell)] w-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] bg-white shadow-[0_6px_10px_rgba(6,55,59,0.18)]"
+          >
+            <Link
+              href="/"
+              className="group flex flex-col items-center justify-center"
+              aria-label={SITE_NAME}
+            >
+              <Image
+                src="/logo.png"
+                alt={SITE_NAME}
+                width={52}
+                height={52}
+                className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                priority
+              />
+            </Link>
+            <div className="flex gap-1.5">
+              <Link
+                href="/"
+                aria-label="Home"
+                className="grid h-7 w-7 place-items-center rounded-lg bg-zinc-100 text-teal-700 transition hover:bg-teal-100"
+              >
+                <Icon name="home" className="h-4 w-4" />
+              </Link>
+              <SearchDialog popular={searchPopular} />
+            </div>
+          </div>
+        </div>
 
-          {categories.map((c) => {
-            const active = c === cat;
-            return (
-              <Link key={c} href={active ? "/" : `/category/${categorySlug(c)}`} className="group">
+        {tiles.map(({ game, span }) => (
+          <Tile key={game.id} game={game} span={span} />
+        ))}
+
+        {categories.map((c) => {
+          const active = c === cat;
+          return (
+            <Link key={c} href={active ? "/" : `/category/${categorySlug(c)}`} className="group">
+              <span
+                className={`flex h-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] px-1 text-center shadow-[0_6px_10px_rgba(6,55,59,0.18)] transition duration-200 group-hover:-translate-y-1 group-hover:shadow-[0_10px_16px_rgba(6,55,59,0.24)] ${
+                  active ? "bg-teal-500" : "bg-white"
+                }`}
+              >
+                <Icon
+                  name={CAT_ICON[c] ?? "joystick"}
+                  className={`h-8 w-8 ${active ? "text-white" : "text-teal-950"}`}
+                />
                 <span
-                  className={`flex h-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] px-1 text-center shadow-[0_6px_10px_rgba(6,55,59,0.18)] transition duration-200 group-hover:-translate-y-1 group-hover:shadow-[0_10px_16px_rgba(6,55,59,0.24)] ${
-                    active ? "bg-teal-500" : "bg-white"
+                  className={`text-[11px] font-bold uppercase leading-tight ${
+                    active ? "text-white" : "text-teal-600"
                   }`}
                 >
-                  <Icon
-                    name={CAT_ICON[c] ?? "joystick"}
-                    className={`h-8 w-8 ${active ? "text-white" : "text-teal-950"}`}
-                  />
-                  <span
-                    className={`text-[11px] font-bold uppercase leading-tight ${
-                      active ? "text-white" : "text-teal-600"
-                    }`}
-                  >
-                    {c}
-                  </span>
+                  {c}
                 </span>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+              </span>
+            </Link>
+          );
+        })}
 
-      {/* Full width prose, category navigation, and footer section */}
-      <main className="flex flex-col gap-[var(--grid-gap)] w-full my-[var(--grid-gap)] pb-8">
+        {/* Full width prose, category navigation, and footer section aligned with grid */}
+        <div style={{ gridColumn: "1 / -1" }} className="flex flex-col gap-[var(--grid-gap)] w-full my-[var(--grid-gap)] pb-8">
           {/* Editorial content. Original copy — required for AdSense approval. */}
           <article className="w-full rounded-[24px] bg-white p-5 sm:p-8 shadow-sm">
             <h1 className="text-2xl font-bold text-teal-950">
@@ -267,7 +273,8 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           </nav>
 
           <PokiFooter totalGames={games.length} />
-        </main>
+        </div>
+      </main>
     </div>
   );
 }
