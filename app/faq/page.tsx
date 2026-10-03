@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const FAQ_DATA = [
+const FAQ_DATA = [
   {
     id: "playing-games",
     category: "Playing Games",
