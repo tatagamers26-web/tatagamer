@@ -164,9 +164,6 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
   const sidebar = sameCategory.slice(0, SIDEBAR);
   const more = sameCategory.slice(SIDEBAR, SIDEBAR + MORE);
 
-  const searchPopular = games
-    .slice(0, 12)
-    .map((g) => ({ id: g.id, slug: g.slug, title: g.title, thumb: g.thumb }));
 
   const categoryName = getCategoryName(game.category);
   const categoryFeature = getCategoryFeature(game.category);
@@ -260,29 +257,19 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
       {/* Main poki-grid */}
       <main className="poki-grid">
 
-        {/* ── Brand card ─────────────────────────────────────────────────── */}
-        <div className="flex h-[var(--cell)] w-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] bg-white shadow-[0_6px_10px_rgba(6,55,59,0.18)]">
-          <Link
-            href="/"
-            className="group flex flex-col items-center justify-center"
-            aria-label={SITE_NAME}
-          >
-            <Image
-              src="/logo.png"
-              alt={SITE_NAME}
-              width={52}
-              height={52}
-              className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
-              priority
-            />
-          </Link>
-          <div className="flex gap-1.5">
-            <Link href="/" aria-label="Home" className="grid h-7 w-7 place-items-center rounded-lg bg-zinc-100 text-teal-700 transition hover:bg-teal-100">
-              <Icon name="home" className="h-4 w-4" />
-            </Link>
-            <SearchDialog popular={searchPopular} />
+        {/* ── Category shortcut tile ─────────────────────────────────────── */}
+        <Link
+          href={`/category/${categorySlug(game.category)}`}
+          className="group flex h-[var(--cell)] w-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] bg-white shadow-[0_6px_10px_rgba(6,55,59,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_16px_rgba(6,55,59,0.24)] text-center p-2"
+          title={`More ${game.category} Games`}
+        >
+          <div className="grid h-8 w-8 place-items-center rounded-xl bg-teal-50 text-teal-700 transition group-hover:bg-teal-500 group-hover:text-white">
+            <Icon name={CAT_ICON[game.category] ?? "joystick"} className="h-5 w-5" />
           </div>
-        </div>
+          <span className="text-[11px] font-bold text-[#06373b] group-hover:text-teal-600 truncate max-w-[85px] leading-tight">
+            {game.category}
+          </span>
+        </Link>
 
         {/* ── Game player + right-side ad (flex row) ────────────────────────── */}
         <div className="game-player flex items-start gap-[var(--grid-gap)]">

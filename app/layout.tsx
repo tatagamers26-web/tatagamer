@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { Header } from "./header";
 import { SITE_NAME, SITE_TAGLINE, siteUrl } from "./seo";
 
 export const viewport: Viewport = {
@@ -180,6 +181,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <Header />
         {children}
       </body>
     </html>

@@ -91,9 +91,6 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
   const categoryGames = games.filter((g) => g.category === category);
   const count = categoryGames.length;
 
-  const searchPopular = games
-    .slice(0, 12)
-    .map((g) => ({ id: g.id, slug: g.slug, title: g.title, thumb: g.thumb }));
 
   /* JSON-LD: BreadcrumbList + ItemList */
   const breadcrumbLd = {
@@ -132,28 +129,6 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
       <main>
         {/* ── Top bar ─────────────────────────────────────────────── */}
         <div className="poki-grid">
-          {/* Brand card */}
-          <div className="relative">
-            <div className="fixed top-[var(--grid-gap)] z-30 flex h-[var(--cell)] w-[var(--cell)] flex-col items-center justify-center gap-1.5 rounded-[20px] bg-white shadow-[0_6px_10px_rgba(6,55,59,0.18)]">
-              <Link href="/" className="group flex flex-col items-center justify-center" aria-label={SITE_NAME}>
-                <Image
-                  src="/logo.png"
-                  alt={SITE_NAME}
-                  width={52}
-                  height={52}
-                  className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
-                  priority
-                />
-              </Link>
-              <div className="flex gap-1.5">
-                <Link href="/" aria-label="Home" className="grid h-7 w-7 place-items-center rounded-lg bg-zinc-100 text-teal-700 transition hover:bg-teal-100">
-                  <Icon name="home" className="h-4 w-4" />
-                </Link>
-                <SearchDialog popular={searchPopular} />
-              </div>
-            </div>
-          </div>
-
           {/* Category pills */}
           {categories.map((c) => {
             const active = c === category;
