@@ -174,26 +174,35 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
               </p>
             </div>
 
-            {/* Game grid */}
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-[var(--grid-gap)]">
-              {categoryGames.map((g) => (
-                <Link
-                  key={g.id}
-                  href={`/game/${g.slug}`}
-                  className="group relative aspect-square overflow-hidden rounded-2xl bg-white/40 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <Image
-                    src={g.thumb}
-                    alt={g.title}
-                    fill
-                    sizes="120px"
-                    className="object-cover transition duration-300 group-hover:scale-110"
-                  />
-                  <span className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-1.5 opacity-0 transition group-hover:opacity-100">
-                    <span className="text-[10px] font-bold leading-tight text-white line-clamp-2">{g.title}</span>
-                  </span>
-                </Link>
-              ))}
+            {/* Game grid in glass container */}
+            <div className="rounded-[28px] sm:rounded-[36px] bg-white/30 backdrop-blur-xl border border-white/50 p-2.5 sm:p-5 shadow-[0_8px_32px_rgba(6,55,59,0.06)]">
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-[var(--grid-gap)]">
+                {categoryGames.map((g) => (
+                  <Link
+                    key={g.id}
+                    href={`/game/${g.slug}`}
+                    className="group relative aspect-square overflow-hidden rounded-[20px] bg-white/50 shadow-xs transition-all duration-300 ease-out hover:z-20 hover:-translate-y-1 hover:scale-[1.04] hover:shadow-[0_12px_24px_rgba(6,55,59,0.22)] ring-2 ring-white/60 hover:ring-white"
+                  >
+                    <Image
+                      src={g.thumb}
+                      alt={g.title}
+                      fill
+                      sizes="120px"
+                      className="object-cover transition duration-300 ease-out group-hover:scale-108"
+                    />
+                    {/* Hover Centered Play Button */}
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                      <div className="grid h-9 w-9 place-items-center rounded-full bg-white/95 text-teal-700 shadow-xl opacity-0 scale-75 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100">
+                        <Icon name="play" className="h-4 w-4 ml-0.5 fill-current" />
+                      </div>
+                    </div>
+                    {/* Bottom Title Overlay */}
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end bg-gradient-to-t from-black/85 via-black/40 to-transparent p-1.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                      <span className="text-[10px] font-bold leading-tight text-white line-clamp-2 truncate">{g.title}</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </div>
 
             {/* Ad leaderboard */}
