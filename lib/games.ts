@@ -12,11 +12,12 @@ export type Game = {
   height: string;
 };
 
-// Most-played catalog (~5000 games). Payload ~4MB exceeds Next's 2MB
-// fetch-cache limit, so cache in module memory instead.
+// Most-played catalog (10,001 games by default). Safe for server RAM and performance.
+// Configure via GAMES_AMOUNT env var if needed.
 // ponytail: per-instance cache; move to KV/edge cache if serverless cold fetches hurt.
+const AMOUNT = process.env.GAMES_AMOUNT || "10000";
 const FEED =
-  "https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=html5&popularity=mostplayed&company=All&amount=All";
+  `https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=html5&popularity=mostplayed&company=All&amount=${AMOUNT}`;
 const TTL = 60 * 60 * 1000;
 
 /** URL-safe slug from a game title. Falls back to the id when a title has no

@@ -15,6 +15,98 @@ import { categorySlug } from "../../category/[slug]/page";
 const SIDEBAR = 17;
 const MORE = 24;
 
+function getCategoryName(category: string): string {
+  const cat = category.trim().toLowerCase();
+  if (cat === "puzzles") return "puzzle";
+  return cat;
+}
+
+function getCategoryFeature(category: string): string {
+  const cat = category.trim();
+  if (cat.toLowerCase() === "puzzles") return "Puzzle";
+  return cat;
+}
+
+function getGameObjective(category: string): { main: string; brief: string } {
+  const cat = category.trim().toLowerCase();
+  switch (cat) {
+    case "action":
+      return {
+        main: "dive into fast-paced challenges, overcome dangerous hurdles, and defeat opponents",
+        brief: "experience fast-paced action, defeat opponents, and complete thrilling missions",
+      };
+    case "racing":
+      return {
+        main: "take the wheel, navigate challenging tracks, and race to beat the clock",
+        brief: "speed through challenging tracks, dodge obstacles, and compete for first place",
+      };
+    case "puzzles":
+    case "puzzle":
+      return {
+        main: "solve clever puzzles, exercise their logic, and unlock increasingly challenging levels",
+        brief: "solve engaging puzzles, test their problem-solving skills, and complete each level",
+      };
+    case "adventure":
+      return {
+        main: "explore exciting worlds, overcome unexpected obstacles, and complete rewarding quests",
+        brief: "embark on exciting quests, navigate dangerous obstacles, and reach new areas",
+      };
+    case "arcade":
+      return {
+        main: "enjoy classic fast-paced action, test their quick reflexes, and set new high scores",
+        brief: "test their quick reflexes, avoid hazards, and achieve the highest score possible",
+      };
+    case "shooting":
+      return {
+        main: "test their aim, defeat incoming targets, and survive action-packed combat encounters",
+        brief: "aim with precision, eliminate hostile targets, and survive intense combat encounters",
+      };
+    case "hypercasual":
+      return {
+        main: "jump straight into quick, addictive gameplay, test their reflexes, and beat their high score",
+        brief: "enjoy instant, addictive gameplay and test their timing to beat high scores",
+      };
+    case "sports":
+    case "soccer":
+      return {
+        main: "showcase their athletic skills, outsmart rivals, and score game-winning points",
+        brief: "compete in athletic matchups, make decisive plays, and lead their team to victory",
+      };
+    case "fighting":
+      return {
+        main: "master powerful combat moves, counter enemy attacks, and emerge victorious in battle",
+        brief: "battle tough opponents, unleash powerful combinations, and win the match",
+      };
+    case "cooking":
+      return {
+        main: "prepare delicious recipes, manage their kitchen efficiently, and delight hungry customers",
+        brief: "cook tasty dishes, follow recipe steps, and manage time to serve customers",
+      };
+    case "clicker":
+      return {
+        main: "tap their way to success, unlock exciting upgrades, and maximize their progression",
+        brief: "tap to collect resources, unlock powerful upgrades, and maximize their progress",
+      };
+    case "multiplayer":
+    case "2 player":
+    case ".io":
+      return {
+        main: "compete against other players, climb the leaderboards, and dominate the game arena",
+        brief: "challenge other players, test their competitive skills, and climb the leaderboard",
+      };
+    case "3d":
+      return {
+        main: "navigate immersive 3D environments, conquer tricky obstacles, and complete exciting missions",
+        brief: "explore dynamic 3D environments, overcome obstacles, and achieve top results",
+      };
+    default:
+      return {
+        main: "test their skills, overcome tricky obstacles, and complete exciting challenges",
+        brief: "test their skills, complete engaging objectives, and aim for the top score",
+      };
+  }
+}
+
 async function resolve(slug: string) {
   const bySlug = await getGameBySlug(slug);
   if (bySlug) return { game: bySlug, redirectTo: null as string | null };
@@ -76,6 +168,10 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
     .slice(0, 12)
     .map((g) => ({ id: g.id, slug: g.slug, title: g.title, thumb: g.thumb }));
 
+  const categoryName = getCategoryName(game.category);
+  const categoryFeature = getCategoryFeature(game.category);
+  const objective = getGameObjective(game.category);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "VideoGame",
@@ -107,11 +203,58 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
     ],
   };
 
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `What is ${game.title}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${game.title} is an online ${categoryName} game where players can ${objective.brief}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How do I play ${game.title}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Open the game on TataGamer, start the game, and use the available keyboard, mouse, or touch controls to play. Follow the objectives shown in the game to progress.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Is ${game.title} free to play?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Yes. ${game.title} is available to play online on TataGamer without requiring a separate game installation.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Can I play ${game.title} on mobile?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Mobile compatibility depends on the game. If the game supports touch controls and mobile browsers, you can play it on a compatible smartphone or tablet.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Do I need to download ${game.title}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `No additional download is required when the game is available to play directly through your browser on TataGamer.`,
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto w-full max-w-[1854px] px-2.5">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, breadcrumbLd]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, breadcrumbLd, faqLd]) }}
       />
 
       {/* Main poki-grid */}
@@ -221,15 +364,18 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
               <Link href={`/category/${categorySlug(game.category)}`} className="hover:underline">{game.category}</Link>
             </nav>
 
-            <h1 className="text-2xl font-bold text-teal-950">
-              {game.title}{" "}
-              <Link href="/" className="text-lg font-semibold text-teal-500 transition hover:text-teal-700 hover:underline">
-                on {SITE_NAME}
-              </Link>
+            <h1 className="text-2xl sm:text-3xl font-bold text-teal-950">
+              About {game.title}
             </h1>
 
             <div className="mt-4 space-y-4 text-base leading-relaxed text-zinc-600">
-              {game.description && <p>{game.description}</p>}
+              <p>
+                {game.title} is an exciting online {categoryName} game where players can {objective.main}. The game combines simple controls with engaging gameplay, making it easy to get started while still providing challenges as you progress. Players need to use their skills, timing, and strategy to complete objectives and achieve better results.
+              </p>
+
+              <p>
+                During the game, you may need to overcome obstacles, collect items, complete missions, defeat opponents, or reach specific goals depending on the gameplay. Paying attention to your surroundings and learning how the game mechanics work can help you improve your performance.
+              </p>
 
               <figure className="flex justify-center py-3">
                 <Image src={game.thumb} alt={`${game.title} gameplay`} width={260} height={195} className="rounded-2xl shadow-[0_6px_10px_rgba(6,55,59,0.18)]" />
@@ -241,35 +387,83 @@ export default async function GamePage({ params }: PageProps<"/game/[slug]">) {
                 <AdUnit variant="medium-rect" />
               </div>
 
-              {game.instructions && (
-                <>
-                  <h2 className="pt-2 text-lg font-bold text-teal-950">How to play {game.title}</h2>
-                  <p>{game.instructions}</p>
-                </>
-              )}
+              <p>
+                {game.title} is available to play directly in your web browser, so you can start playing without installing additional software. Whether you are looking for a quick game or want to spend more time improving your skills, this {categoryName} game offers an enjoyable browser gaming experience.
+              </p>
 
-              <h2 className="pt-2 text-lg font-bold text-teal-950">Features of {game.title}</h2>
-              <ul className="space-y-2 pl-5">
-                <li className="list-disc">Plays instantly in the browser. No download, no install, no account needed.</li>
-                <li className="list-disc">Free to play, with no time limit and no locked levels.</li>
-                <li className="list-disc">
-                  A {game.category.toLowerCase()} game, so it sits alongside{" "}
-                  <Link href={`/category/${categorySlug(game.category)}`} className="font-semibold text-teal-700 hover:underline">
-                    every other {game.category} title
-                  </Link>{" "}
-                  on {SITE_NAME}.
-                </li>
-                {game.instructions && <li className="list-disc">Controls: {game.instructions.toLowerCase()}</li>}
-                <li className="list-disc">Runs on desktop, tablet and phone, and expands to full screen from the button under the player.</li>
+              <p>
+                Play {game.title} on {SITE_NAME} and discover more free online games across different categories.
+              </p>
+
+              <h2 className="pt-2 text-xl font-bold text-teal-950">How to Play {game.title}</h2>
+              <p>Getting started with {game.title} is simple:</p>
+              <ul className="space-y-2 pl-5 list-disc">
+                <li>Open the game and wait for it to load completely.</li>
+                <li>Start the game using the Play or Start button.</li>
+                <li>Use the available controls to move, interact, attack, jump, or perform other actions.</li>
+                <li>Follow the objectives and instructions provided during gameplay.</li>
+                <li>Avoid obstacles and make careful decisions to progress.</li>
+                <li>Complete the level or objective and try to improve your performance.</li>
               </ul>
 
-              <h2 className="pt-2 text-lg font-bold text-teal-950">Playing {game.title} on {SITE_NAME}</h2>
+              <h2 className="pt-2 text-xl font-bold text-teal-950">Controls</h2>
+              <ul className="space-y-2 pl-5 list-disc">
+                <li><span className="font-semibold text-teal-950">W / A / S / D:</span> Move the character</li>
+                <li><span className="font-semibold text-teal-950">Arrow Keys:</span> Move or navigate</li>
+                <li><span className="font-semibold text-teal-950">Mouse:</span> Select, aim, or interact</li>
+                <li><span className="font-semibold text-teal-950">Spacebar:</span> Jump or perform a special action</li>
+                <li><span className="font-semibold text-teal-950">Enter:</span> Start or confirm</li>
+              </ul>
+              <p className="text-sm text-zinc-500">Note: Controls may vary depending on the game.</p>
+
+              <h2 className="pt-2 text-xl font-bold text-teal-950">Tips &amp; Tricks</h2>
+              <ul className="space-y-2 pl-5 list-disc">
+                <li>Learn the basic controls before attempting difficult challenges.</li>
+                <li>Pay attention to obstacles, enemies, and important objects around you.</li>
+                <li>Use power-ups and special abilities at the right moment.</li>
+                <li>Take your time to understand the game&apos;s mechanics and objectives.</li>
+                <li>Practice regularly to improve your timing, accuracy, and overall performance.</li>
+              </ul>
+
+              <h2 className="pt-2 text-xl font-bold text-teal-950">Game Features</h2>
+              <ul className="space-y-2 pl-5 list-disc">
+                <li>Fun and exciting browser gameplay</li>
+                <li>Simple controls that are easy to learn</li>
+                <li>Challenging gameplay and objectives</li>
+                <li>{categoryFeature} game experience</li>
+                <li>Playable directly in a web browser</li>
+                <li>No additional game installation required</li>
+                <li>Suitable for casual gaming sessions</li>
+                <li>More games available to explore on {SITE_NAME}</li>
+              </ul>
+
+              <h2 className="pt-2 text-xl font-bold text-teal-950">Frequently Asked Questions</h2>
+              <div className="space-y-3">
+                <div>
+                  <h3 className="font-bold text-teal-950">What is {game.title}?</h3>
+                  <p>{game.title} is an online {categoryName} game where players can {objective.brief}.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-teal-950">How do I play {game.title}?</h3>
+                  <p>Open the game on {SITE_NAME}, start the game, and use the available keyboard, mouse, or touch controls to play. Follow the objectives shown in the game to progress.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-teal-950">Is {game.title} free to play?</h3>
+                  <p>Yes. {game.title} is available to play online on {SITE_NAME} without requiring a separate game installation.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-teal-950">Can I play {game.title} on mobile?</h3>
+                  <p>Mobile compatibility depends on the game. If the game supports touch controls and mobile browsers, you can play it on a compatible smartphone or tablet.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-teal-950">Do I need to download {game.title}?</h3>
+                  <p>No additional download is required when the game is available to play directly through your browser on {SITE_NAME}.</p>
+                </div>
+              </div>
+
+              <h2 className="pt-2 text-xl font-bold text-teal-950">Related Games</h2>
               <p>
-                {game.title} runs directly in your browser. There is nothing to download and no account to create. Press play above and the game loads in place. Prefer something similar? Every game in the{" "}
-                <Link href={`/category/${categorySlug(game.category)}`} className="font-semibold text-teal-700 hover:underline">
-                  {game.category} category
-                </Link>{" "}
-                is one click away, and the thumbnails around the player are all from that same category.
+                If you enjoyed {game.title}, you can also explore other games on {SITE_NAME}. Discover more {categoryName}, action, racing, puzzle, adventure, and casual games and find your next favorite browser game.
               </p>
 
               {game.tags && (

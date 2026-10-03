@@ -1,6 +1,6 @@
 # Deploy to Hostinger (Node.js app)
 
-Verified locally: production build clean, all routes 200, ~116MB RAM, 2.5s first request, 0.05s after.
+Verified locally: production build clean, all routes 200, ~140MB RAM, ~3.5s first request, 0.05s after.
 
 ## 1. Upload
 
@@ -45,10 +45,10 @@ output, not the source.
 
 ## Notes
 
-- **First request after any restart takes ~2.5s.** The server downloads the 4MB
+- **First request after any restart takes ~3.5s.** The server downloads the ~7.5MB
   GameMonetize feed once, then caches it in memory for an hour. Every later
   request is ~50ms.
-- **Memory:** ~116MB steady. Fine on any Hostinger plan with Node support.
+- **Memory:** ~140MB steady. Fine on any Hostinger plan with Node support.
 - **Feed refresh:** hourly, automatic. New games appear without a redeploy.
 - If the feed is ever unreachable, the last good copy keeps serving rather than
   showing an error.
